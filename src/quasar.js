@@ -17,6 +17,9 @@ import {
   QItem,
   QItemSection,
   QItemLabel,
+  QForm,
+  QInput,
+  Notify
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -35,9 +38,12 @@ Vue.use(Quasar, {
     QItem,
     QItemSection,
     QItemLabel,
+    QForm,
+    QInput
   },
   directives: {
   },
   plugins: {
+    Notify
   }
  })
