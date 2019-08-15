@@ -43,7 +43,8 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      userNow:""
     };
   },
 
@@ -68,6 +69,8 @@ export default {
               icon: "fas fa-check-circle",
               message: "kamu telah login"
             });
+            self.$ls.set("userNow", result.id);
+            // console.log("id nya dia = ", self.$ls.get("userNow"))
             self.$router.push("mainmenu");
           }
           return result;
