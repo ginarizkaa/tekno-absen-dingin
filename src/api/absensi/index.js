@@ -14,5 +14,16 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
+    },
+
+    postAbsen(window, param){
+        return getApiNoAuth()
+        .post('DataAbsensis', param)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
     }
 }

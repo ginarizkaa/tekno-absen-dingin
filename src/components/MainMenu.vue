@@ -7,19 +7,20 @@
       <div>{{ idUserNow }}</div>
       <div class="column" style="height: 150px;text-align:center;">
         <div class="col">
-          <q-btn color="primary" label="ABSEN" />
+          <q-btn color="primary" label="ABSEN" to="/absen"/>
         </div>
         <div class="col">
-          <q-btn color="primary" label="IZIN CUTI" />
+          <q-btn color="primary" label="IZIN CUTI" to="/izincuti"/>
         </div>
         <div class="col">
-          <q-btn color="primary" label="APPROVAL" />
+          <q-btn color="primary" label="APPROVAL" to="/approval"/>
         </div>
         
       </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data(){
