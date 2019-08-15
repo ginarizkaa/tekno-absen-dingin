@@ -15,27 +15,43 @@ export default {
   data () {
     return {
       columns: [
-                
         {
           name: 'name',
           required: true,
           label: 'Nama',
           align: 'left',
-          field: row => row.projectName,
+          field: row => row.jeniscuti,
+          sortable: false
+        },
+                
+        {
+          name: 'name',
+          required: true,
+          label: 'Jenis Cuti',
+          align: 'left',
+          field: row => row.jeniscuti,
           sortable: false
         },
         {
-          name: 'status',
+          name: 'awalcuti',
           required: true,
-          label: 'Status',
+          label: 'Awal Cuti',
           align: 'left',
           field: row => row.status,
           sortable: false
         },
         {
+          name: 'akhircuti',
+          required: true,
+          label: 'Akhir Cuti',
+          align: 'left',
+          field: row => row.createAt,
+          sortable: false
+        },
+        {
           name: 'createAt',
           required: true,
-          label: 'Stamptime',
+          label: 'Keterangan',
           align: 'left',
           field: row => row.createAt,
           sortable: false

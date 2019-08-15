@@ -24,6 +24,7 @@ import {
   QTh,
   QTr,
   QTd,
+  QSelect
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -47,7 +48,8 @@ Vue.use(Quasar, {
     QTable,
     QTh,
     QTr,
-    QTd
+    QTd,
+    QSelect
   },
   directives: {
   },

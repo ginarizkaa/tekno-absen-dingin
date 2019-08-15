@@ -10,9 +10,12 @@
         @reset="onReset"
         class="q-gutter-md"
       >
+
+        <q-select filled v-model="model" :options="options" label="Jenis Cuti" />
+
         <q-input v-model="dateawal" filled type="date" hint="Awal Cuti" />
 
-        <q-input v-model="dateakhir" filled type="date" hint="Akhir Cuti" />
+        <q-input v-model="dateakhir" filled type="date" hint="Akhir Cuti" />        
 
         <q-input
         v-model="text"
@@ -41,7 +44,17 @@ export default {
     return {
       dateawal: '',
       dateakhir: '',
-      text: ''
+      text: '',
+      options: [
+        'Cuti Tahunan',
+        'Cuti Sakit',
+        'Cuti Dayoff',
+        'Cuti Hamil',
+        'Cuti Penting',
+        'Cuti Bersama',
+        'Cuti Besar',
+        'Cuti Ibadah'
+      ]
     };
   },
 
