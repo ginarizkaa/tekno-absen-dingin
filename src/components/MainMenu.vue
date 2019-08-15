@@ -13,7 +13,7 @@
           <q-btn color="primary" label="IZIN CUTI" />
         </div>
         <div class="col">
-          <q-btn color="primary" label="APPROVEL" />
+          <q-btn color="primary" label="APPROVAL" />
         </div>
         
       </div>
