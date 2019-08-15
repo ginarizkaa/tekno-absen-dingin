@@ -19,7 +19,11 @@ import {
   QItemLabel,
   QForm,
   QInput,
-  Notify
+  Notify,
+  QTable,
+  QTh,
+  QTr,
+  QTd,
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -39,7 +43,11 @@ Vue.use(Quasar, {
     QItemSection,
     QItemLabel,
     QForm,
-    QInput
+    QInput,
+    QTable,
+    QTh,
+    QTr,
+    QTd
   },
   directives: {
   },
