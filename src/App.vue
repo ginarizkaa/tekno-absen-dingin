@@ -35,7 +35,8 @@ export default {
     return {
       leftDrawerOpen: this.$q.platform.is.desktop
     };
-  }
+  },
+  
 };
 </script>
 
