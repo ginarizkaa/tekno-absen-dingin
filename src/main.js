@@ -8,6 +8,10 @@ import VueLocalStorage from 'vue-localstorage'
 
 import './quasar'
 
+import VueGeolocation from 'vue-browser-geolocation';
+
+Vue.use(VueGeolocation);
+
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
