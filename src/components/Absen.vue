@@ -36,15 +36,17 @@ export default {
             keterangan: "datang",
             status: "waiting",
             idAsesor: "",
-            loc: [coordinates.lat,coordinates.lng]
+            location: [coordinates.lat,coordinates.lng]
           }
 
-          // console.log("oke = ",param)
+          console.log("oke = ",param)
 
           absensi_api
             .postAbsen(window, param)
             .then(function(result) {
+              console.log("berhasil")
               return result;
+              
             })
             .catch(function(err) {
               console.log(err);
