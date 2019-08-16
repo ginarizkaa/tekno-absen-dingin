@@ -1,6 +1,9 @@
 <template>
+  
   <div class="container mt-4" >
-
+    <div style="text-align:center;">
+        <h3>Apporal Absen</h3>
+    </div>
     <table class="table table-bordered mt-4">
       <thead class="thead-light">
         <tr>

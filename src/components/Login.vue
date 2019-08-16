@@ -47,6 +47,12 @@ export default {
       userNow:""
     };
   },
+  computed: {
+    kakion() {
+      kaki: false
+      return kaki
+    }
+  },
 
   methods: {
     onSubmit() {

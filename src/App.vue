@@ -10,29 +10,32 @@
 
     <q-page-container>
       <router-view />
+      <footery v-if="['home'].indexOf($route.name) > -1"/>
+      <footerx v-if="['mainmenu'].indexOf($route.name) > -1"/>
+      <footerz v-if="['absen', 'approval','izincuti','approvecuti'].indexOf($route.name) > -1"/>
     </q-page-container>
 
-    <q-footer>
-      <q-toolbar>
-        <q-btn flat icon="navigate_before" />
-        <q-space></q-space>
-        <q-btn flat icon="exit_to_app" to="/"/>
-      </q-toolbar>
-    </q-footer>
   </q-layout>
 </template>
 
 <script>
-
+import Footerz from "@/components/Footerz.vue"
+import Footery from "@/components/Footery.vue"
+import Footerx from "@/components/Footerx.vue"
 export default {
   name: "LayoutDefault",
 
   components: {
-    
+    Footerz,
+    Footery,
+    Footerx
+  },
+  beforeCreate() {
   },
 
   data() {
     return {
+      
       leftDrawerOpen: this.$q.platform.is.desktop
     };
   }

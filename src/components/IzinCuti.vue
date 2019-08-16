@@ -44,6 +44,7 @@ export default {
     return {
       dateawal: '',
       dateakhir: '',
+      model:'',
       text: '',
       options: [
         'Cuti Tahunan',

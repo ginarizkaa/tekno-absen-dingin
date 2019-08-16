@@ -7,13 +7,12 @@ import ApproveCuti from '@/components/ApproveCuti.vue';
 import Lab from '@/components/Lab.vue';
 
 const routes = [
-    { path: '/', component: Login },
-    { path: '/mainmenu', component: MainMenu },
-    { path: '/absen', component: Absen },
-    { path: '/approval', component: Approval },
-    { path: '/izincuti', component: IzinCuti },
-    { path: '/approvecuti', component: ApproveCuti },
-    { path: '/lab', component: Lab },
+    { path: '/', component: Login, name: 'home' },
+    { path: '/mainmenu', component: MainMenu, name: 'mainmenu' },
+    { path: '/absen', component: Absen, name: 'absen' },
+    { path: '/approval', component: Approval, name: 'approval' },
+    { path: '/izincuti', component: IzinCuti, name: 'izincuti' },
+    { path: '/approvecuti', component: ApproveCuti, name: 'approvecuti' },
 ];
 
 export default routes;
