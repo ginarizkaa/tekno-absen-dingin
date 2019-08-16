@@ -11,6 +11,14 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-footer>
+      <q-toolbar>
+        <q-btn flat icon="navigate_before" />
+        <q-space></q-space>
+        <q-btn flat icon="exit_to_app" to="/"/>
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
 

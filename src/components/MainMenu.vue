@@ -5,15 +5,18 @@
         <h3>Main Menu</h3>
       </div>
       <div>{{ idUserNow }}</div>
-      <div class="column" style="height: 150px;text-align:center;">
+      <div class="column" style="height: 250px;text-align:center;">
         <div class="col">
-          <q-btn color="primary" label="ABSEN" to="/absen"/>
+          <q-btn color="primary" label="ABSEN" style="width:60%;" to="/absen"/>
         </div>
         <div class="col">
-          <q-btn color="primary" label="IZIN CUTI" to="/izincuti"/>
+          <q-btn color="primary" label="IZIN CUTI" style="width:60%;" to="/izincuti"/>
         </div>
         <div class="col">
-          <q-btn color="primary" label="APPROVAL" to="/approval"/>
+          <q-btn color="primary" label="APPROVAL" style="width:60%;" to="/approval"/>
+        </div>
+        <div class="col">
+          <q-btn color="primary" label="APPROVAL CUTI" style="width:60%;" to="/approvecuti"/>
         </div>
         
       </div>
