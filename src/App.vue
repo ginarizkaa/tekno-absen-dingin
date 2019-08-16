@@ -38,7 +38,8 @@ export default {
       
       leftDrawerOpen: this.$q.platform.is.desktop
     };
-  }
+  },
+  
 };
 </script>
 

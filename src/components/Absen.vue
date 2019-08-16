@@ -6,11 +6,11 @@
       </div>
       <div class="column" style="height: 150px;text-align:center;">
         <div class="col">
-          <q-btn color="primary" label="ABSEN DATANG" @click="absen()"/>
+          <q-btn color="primary" label="ABSEN DATANG" @click="absenDatang()"/>
           
         </div>
         <div class="col">
-          <q-btn color="primary" label="ABSEN PULANG" />
+          <q-btn color="primary" label="ABSEN PULANG" @click="absenPulang()"/>
         </div>
       </div>
     </div>
@@ -27,35 +27,60 @@ export default {
   },
   
   methods:{
-    absen(){
+    absenDatang(){
+      
+      this.$getLocation()
+      .then(coordinates => {
+          let param = {
+            idEmployee: this.$ls.get("userNow"),
+            keterangan: "datang",
+            status: "waiting",
+            idAsesor: "",
+            location: {
+              lat: coordinates.lat,
+              lng: coordinates.lng
+            }
+          }
+          
+          console.log("oke = ",param)
+
+          absensi_api
+            .postAbsen(window, param)
+            .then(function(result) {
+              console.log("berhasil")
+              return result;
+            })
+            .catch(function(err) {
+              console.log(err);
+            });
+      });
+    },
+    
+    absenPulang(){
       
       this.$getLocation()
       .then(coordinates => {
           let param = {
             idUser: this.$ls.get("userNow"),
-            keterangan: "datang",
+            keterangan: "pulang",
             status: "waiting",
             idAsesor: "",
-            loc: [coordinates.lat,coordinates.lng]
+            location: [coordinates.lat,coordinates.lng]
           }
-
-          // console.log("oke = ",param)
+          console.log("oke = ",param)
 
           absensi_api
             .postAbsen(window, param)
             .then(function(result) {
+              console.log("berhasil")
               return result;
             })
             .catch(function(err) {
               console.log(err);
             });
      });
-
-      
-
-      
+     
     },
-    
     
   }
 }
