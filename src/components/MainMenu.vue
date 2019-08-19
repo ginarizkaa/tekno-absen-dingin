@@ -4,7 +4,6 @@
       <div style="text-align:center;">
         <h3>Main Menu</h3>
       </div>
-      <div>{{ idUserNow }}</div>
       <div class="column" style="height: 250px;text-align:center;">
         <div class="col">
           <q-btn color="primary" label="ABSEN" style="width:60%;" to="/absen"/>
