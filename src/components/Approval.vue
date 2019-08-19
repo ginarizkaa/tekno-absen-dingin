@@ -1,5 +1,4 @@
 <template>
-  
   <div class="container mt-4" >
     <div style="text-align:center;">
         <h3>Approval Absen</h3>

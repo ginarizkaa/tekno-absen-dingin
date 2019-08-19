@@ -28,9 +28,10 @@ export default {
   
   methods:{
     absenDatang(){
-      
       this.$getLocation()
       .then(coordinates => {
+        
+      console.log("oke = ok")
           let param = {
             idEmployee: this.$ls.get("userNow"),
             keterangan: "datang",
