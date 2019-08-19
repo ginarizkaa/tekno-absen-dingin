@@ -1,16 +1,16 @@
 <template>
-  <div class="container mt-4" >
+  <div >
     <div style="text-align:center;">
         <h3>Approval Absen</h3>
     </div>
     
-    <table class="table table-bordered mt-4">
+    <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
           <th width="5%">No</th>
-          <th width="10%">Nama</th>
+          <th width="30%">Nama</th>
           <th width="10%">Keterangan</th>
-          <th width="10%">Status</th>
+          <th width="30%">Status</th>
           <th width="10%">Waktu</th>
           <th width="10%">Action</th>
         </tr>
@@ -29,7 +29,7 @@
             {{ da.status }}
           </td>
           <td>
-            {{ da.date }}
+            {{ da.date | formatDate }}
           </td>
           <td>
             <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
@@ -45,15 +45,21 @@
 <script>
 import absensi_api from '../api/absensi/index'
 
-
 export default {
   data () {
     return {
       dataAbsensi:[]
     }
+    
   },
+  
 
   methods:{
+    format_date(value){
+         if (value) {
+           return moment(String(value)).format('YYYYMMDD')
+          }
+    },
     accept(data){
       let self = this;
       let idAbsen = data.id;
@@ -93,6 +99,7 @@ export default {
     },
 
   },
+  
 
   beforeCreate(){
     let self = this;

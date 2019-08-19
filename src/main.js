@@ -23,6 +23,16 @@ Vue.use(VueLocalStorage, {
 
 const router = new VueRouter({routes});
 
+import moment from 'moment'
+  
+Vue.config.productionTip = false
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('hh:mm')
+  }
+});
+  
+
 new Vue({
   router,
   render: h => h(App),

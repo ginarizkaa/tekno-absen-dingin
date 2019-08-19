@@ -4,7 +4,7 @@ import Absen from '@/components/Absen.vue';
 import Approval from '@/components/Approval.vue';
 import IzinCuti from '@/components/IzinCuti.vue';
 import ApproveCuti from '@/components/ApproveCuti.vue';
-import Lab from '@/components/Lab.vue';
+import Status from '@/components/Status.vue';
 
 const routes = [
     { path: '/', component: Login, name: 'home' },
@@ -13,6 +13,7 @@ const routes = [
     { path: '/approval', component: Approval, name: 'approval' },
     { path: '/izincuti', component: IzinCuti, name: 'izincuti' },
     { path: '/approvecuti', component: ApproveCuti, name: 'approvecuti' },
+    { path: '/status', component: Status, name: 'status' },
 ];
 
 export default routes;
