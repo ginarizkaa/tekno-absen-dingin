@@ -1,4 +1,5 @@
 <template>
+<div class="flex flex-center">
   <div class="container mt-4" >
     <div style="text-align:center;">
         <h3>Approval Cuti</h3>
@@ -8,15 +9,15 @@
         <tr>
           <th width="5%">No</th>
           <th width="20%">Nama</th>
-          <th width="15%">Jenis Cuti</th>
-          <th width="15%">Awal Cuti</th>
-          <th width="15%">Akhir Cuti</th>
-          <th width="10%">Ket</th>
+          <th width="10%">Jenis Cuti</th>
+          <th width="10%">Awal Cuti</th>
+          <th width="10%">Akhir Cuti</th>
+          <th width="25%">Ket</th>
           <th width="10%">Status</th>
           <th width="10%">Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody style="text-align:center;">
         <tr v-for="(dc, index) in dataCuti" :key="index">
           <td>{{ index + 1 }}</td>
           <td>
@@ -26,10 +27,10 @@
             {{ dc.DataJenisCuti.JenisCuti }}
           </td>
           <td>
-            {{ dc.dateAwal }}
+            {{ dc.dateAwal | formatDate }}
           </td>
           <td>
-            {{ dc.dateAkhir }}
+            {{ dc.dateAkhir | formatDate }}
           </td>
           <td>
             {{ dc.keterangan }}
@@ -44,8 +45,8 @@
         </tr>
       </tbody>
     </table>
-
   </div>
+</div>
 </template>
 
 <script>
@@ -124,4 +125,3 @@ export default {
 <style>
 
 </style>
-

@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div class="flex flex-center">
     <div style="text-align:center;">
         <h3>Approval Absen</h3>
     </div>
@@ -29,7 +29,7 @@
             {{ da.status }}
           </td>
           <td>
-            {{ da.date | formatDate }}
+            {{ da.date | formatJam }}
           </td>
           <td>
             <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
