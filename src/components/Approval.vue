@@ -20,7 +20,7 @@
         <tr v-for="(da, index) in dataAbsensi" :key="index">
           <td>{{ index + 1 }}</td>
           <td>
-           {{ da.idEmployee.nama }}
+           {{ da.DataUser.nama   }}
           </td>
           <td>
             {{ da.keterangan }}
@@ -32,8 +32,8 @@
             {{ da.date }}
           </td>
           <td>
-            <q-btn align="center" icon="check" @click="updateProduct(da)" />
-            <q-btn icon="cancel" @click="updateProduct(da)" />
+            <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
+            <q-btn color="red" icon="cancel" @click="updateProduct(da)" />
           </td>
         </tr>
       </tbody>
@@ -53,11 +53,52 @@ export default {
     }
   },
 
+  methods:{
+    accept(data){
+      let self = this;
+      let idAbsen = data.id;
+      
+      let param = {
+        date: data.date,
+        keterangan: data.keterangan,
+        status: "accepted",
+        idAsesor: self.$ls.get("userNow"),
+        location: data.location,
+        idEmployee: data.DataUser.id
+      }
+      console.log("id absen = ", idAbsen, "paramnya = ", param);
+
+      absensi_api
+        .putStatus(window, idAbsen, param)
+        .then(function(result) {
+            console.log("berhasil")
+            return result;
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
+
+      absensi_api
+        .getDetailAbsen(window)
+        .then(function(datas) {
+          return datas;
+        })
+        .then(function(res) {
+          self.dataAbsensi = res;
+          console.log("datanya = ", self.dataAbsensi)
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    },
+
+  },
+
   beforeCreate(){
     let self = this;
 
     absensi_api
-      .getAllAbsen(window)
+      .getDetailAbsen(window)
       .then(function(datas) {
         return datas;
       })

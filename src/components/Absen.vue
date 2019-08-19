@@ -30,60 +30,55 @@ export default {
     absenDatang(){
       this.$getLocation()
       .then(coordinates => {
-        
-      console.log("oke = ok")
-          let param = {
-            idEmployee: this.$ls.get("userNow"),
-            keterangan: "datang",
-            status: "waiting",
-            idAsesor: "",
-            location: {
-              lat: coordinates.lat,
-              lng: coordinates.lng
-            }
+        let param = {
+          idEmployee: this.$ls.get("userNow"),
+          keterangan: "datang",
+          status: "waiting",
+          idAsesor: "",
+          location: {
+            lat: coordinates.lat,
+            lng: coordinates.lng
           }
-          
-          console.log("oke = ",param)
-
-          absensi_api
-            .postAbsen(window, param)
-            .then(function(result) {
-              console.log("berhasil")
-              return result;
-            })
-            .catch(function(err) {
-              console.log(err);
-            });
+        }
+        //console.log("oke = ",param)
+        
+        absensi_api
+          .postAbsen(window, param)
+          .then(function(result) {
+            console.log("berhasil")
+            return result;
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
       });
     },
     
     absenPulang(){
-      
       this.$getLocation()
       .then(coordinates => {
-          let param = {
-            idEmployee: this.$ls.get("userNow"),
-            keterangan: "pulang",
-            status: "waiting",
-            idAsesor: "",
-            location: {
-              lat: coordinates.lat,
-              lng: coordinates.lng
-            }
+        let param = {
+          idEmployee: this.$ls.get("userNow"),
+          keterangan: "pulang",
+          status: "waiting",
+          idAsesor: "",
+          location: {
+            lat: coordinates.lat,
+            lng: coordinates.lng
           }
-          console.log("oke = ",param)
-
-          absensi_api
-            .postAbsen(window, param)
-            .then(function(result) {
-              console.log("berhasil")
-              return result;
-            })
-            .catch(function(err) {
-              console.log(err);
-            });
-     });
-     
+        }
+        //console.log("oke = ",param)
+        absensi_api
+          .postAbsen(window, param)
+          .then(function(result) {
+            console.log("berhasil")
+            return result;
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
+      });
+    
     },
     
   }

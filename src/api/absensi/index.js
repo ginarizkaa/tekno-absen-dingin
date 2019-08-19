@@ -25,5 +25,27 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
+    },
+
+    getDetailAbsen(window){
+        return getApiNoAuth()
+        .get('DataAbsensis?filter=%7B%22include%22%3A%22DataUser%22%7D')
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
+    
+    putStatus(window, idAbsen, param){
+        return getApiNoAuth()
+        .put('DataAbsensis/'+idAbsen, param)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
     }
 }
