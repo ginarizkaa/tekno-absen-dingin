@@ -1,41 +1,45 @@
 <template>
   <div class="container mt-4" >
     <div style="text-align:center;">
-        <h3>Apporal Cuti</h3>
+        <h3>Approval Cuti</h3>
     </div>
     <table class="table table-bordered mt-4">
       <thead class="thead-light">
         <tr>
           <th width="5%">No</th>
-          <th width="10%">Nama</th>
-          <th width="10%">Jenis Cuti</th>
-          <th width="10%">Awal Cuti</th>
-          <th width="10%">Akhir Cuti</th>
+          <th width="20%">Nama</th>
+          <th width="15%">Jenis Cuti</th>
+          <th width="15%">Awal Cuti</th>
+          <th width="15%">Akhir Cuti</th>
           <th width="10%">Ket</th>
+          <th width="10%">Status</th>
           <th width="10%">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in items" :key="index">
+        <tr v-for="(dc, index) in dataCuti" :key="index">
           <td>{{ index + 1 }}</td>
           <td>
-           {{ item.nama }}
+           {{ dc.DataEmployee.nama}}
           </td>
           <td>
-            {{ item.jenis_cuti }}
+            {{ dc.DataJenisCuti.JenisCuti }}
           </td>
           <td>
-            {{ item.awal_cuti }}
+            {{ dc.dateAwal }}
           </td>
           <td>
-            {{ item.akhir_cuti }}
+            {{ dc.dateAkhir }}
           </td>
           <td>
-            {{ item.ket }}
+            {{ dc.keterangan }}
           </td>
           <td>
-            <q-btn icon="check" @click="updateProduct(item)" />
-            <q-btn icon="cancel" @click="updateProduct(item)" />
+            {{ dc.status }}
+          </td>
+          <td>
+            <q-btn color="secondary" icon="check" @click="accept(dc)" />
+            <q-btn color="red" icon="cancel" @click="updateProduct(item)" />
           </td>
         </tr>
       </tbody>
@@ -45,16 +49,75 @@
 </template>
 
 <script>
+import datacuti_api from '../api/datacuti/index'
+
 export default {
   data () {
     return {
-      items: [
-        { nama: 'Dindin', jenis_cuti: 'Cuti Tahunan', awal_cuti: '14-5-2019', akhir_cuti: '14-5-2019', ket: 'Maless' },
-        { nama: 'Gina', jenis_cuti: 'Cuti Hamil', awal_cuti: '18-8-2019', akhir_cuti: '14-1-2020', ket: 'Anak 2' },
-        { nama: 'Bootcamp', jenis_cuti: 'Cuti Ibadah', awal_cuti: '13-4-2019', akhir_cuti: '14-5-2019', ket: 'Umroh' },
-      ]
+      dataCuti: [],
+
     }
   },
+
+  methods:{
+    accept(data){
+      let self = this;
+      let idCuti = data.id;
+      
+      let param = {
+        dateAwal: data.dateAwal,
+        dateAkhir: data.dateAkhir,
+        keterangan: data.keterangan,
+        status: "accepted",
+        idJenisCuti: data.idJenisCuti,
+        idAsesor: self.$ls.get("userNow"),
+        idEmployee: data.DataEmployee.id
+      }
+      console.log("id absen = ", idCuti, "paramnya = ", param);
+
+      datacuti_api
+        .putStatus(window, idCuti, param)
+        .then(function(result) {
+            console.log("berhasil")
+            return result;
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
+
+      datacuti_api
+        .getDetailCuti(window)
+        .then(function(datas) {
+          return datas;
+        })
+        .then(function(res) {
+          self.dataCuti = res;
+          console.log("datanya = ", self.dataCuti)
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    },
+
+  },
+
+  beforeCreate(){
+    let self = this;
+
+    datacuti_api
+      .getDetailCuti(window)
+      .then(function(datas) {
+        return datas;
+      })
+      .then(function(res) {
+        self.dataCuti = res;
+        console.log("datanya = ", self.dataCuti)
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  }
+
 }
 </script>
 

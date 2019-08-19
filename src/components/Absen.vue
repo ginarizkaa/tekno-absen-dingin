@@ -45,7 +45,7 @@ export default {
         absensi_api
           .postAbsen(window, param)
           .then(function(result) {
-            console.log("berhasil")
+            //console.log("berhasil")
             return result;
           })
           .catch(function(err) {
@@ -71,7 +71,7 @@ export default {
         absensi_api
           .postAbsen(window, param)
           .then(function(result) {
-            console.log("berhasil")
+            //console.log("berhasil")
             return result;
           })
           .catch(function(err) {
