@@ -61,11 +61,14 @@ export default {
       this.$getLocation()
       .then(coordinates => {
           let param = {
-            idUser: this.$ls.get("userNow"),
+            idEmployee: this.$ls.get("userNow"),
             keterangan: "pulang",
             status: "waiting",
             idAsesor: "",
-            location: [coordinates.lat,coordinates.lng]
+            location: {
+              lat: coordinates.lat,
+              lng: coordinates.lng
+            }
           }
           console.log("oke = ",param)
 
