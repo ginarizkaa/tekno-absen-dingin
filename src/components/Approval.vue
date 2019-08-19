@@ -15,7 +15,8 @@
           <th width="10%">Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody style="text-align:center;">
+        
         <tr v-for="(da, index) in dataAbsensi" :key="index">
           <td>{{ index + 1 }}</td>
           <td>
@@ -43,6 +44,7 @@
 
 <script>
 import absensi_api from '../api/absensi/index'
+
 
 export default {
   data () {
@@ -110,3 +112,18 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.table .thead-light th {
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+.table {
+    border-collapse: collapse;
+}
+.table-bordered th, .table-bordered td {
+    border: 1px solid #dee2e6;
+}
+</style>
