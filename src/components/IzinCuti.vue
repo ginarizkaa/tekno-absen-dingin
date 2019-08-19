@@ -39,7 +39,6 @@ export default {
   name: "Login",
   data() {
     return {
-
       tabelCutiList: [],
       jenisCuti:"",
       dateAwal: "",
@@ -54,15 +53,14 @@ export default {
       
       let param = {
         idEmployee: self.$ls.get("userNow"),
-        idCuti:self.jenisCuti.value,
+        idJenisCuti:self.jenisCuti.value,
         dateAwal:self.dateAwal,
         dateAkhir:self.dateAkhir,
         keterangan:self.text,
-        status:"waiting",
-        idAsesor:""
+        status:"waiting"
       }
 
-      //console.log("datanya = ", param)
+      console.log("datanya = ", param)
 
       datacuti_api
         .postDataCuti(window, param)

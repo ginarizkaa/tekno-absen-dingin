@@ -25,5 +25,27 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
+    },
+    
+    getDetailCuti(window){
+        return getApiNoAuth()
+        .get('DataCutis?filter=%7B%22include%22%3A%5B%22DataEmployee%22%2C%22DataJenisCuti%22%5D%7D')
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
+
+    putStatus(window, idIzinCuti, param){
+        return getApiNoAuth()
+        .put('DataCutis/'+idIzinCuti, param)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
     }
 }

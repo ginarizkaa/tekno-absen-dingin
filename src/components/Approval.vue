@@ -20,7 +20,7 @@
         <tr v-for="(da, index) in dataAbsensi" :key="index">
           <td>{{ index + 1 }}</td>
           <td>
-           {{ da.DataUser.nama   }}
+           {{ da.DataEmployee.nama   }}
           </td>
           <td>
             {{ da.keterangan }}
@@ -70,7 +70,7 @@ export default {
         status: "accepted",
         idAsesor: self.$ls.get("userNow"),
         location: data.location,
-        idEmployee: data.DataUser.id
+        idEmployee: data.DataEmployee.id
       }
       console.log("id absen = ", idAbsen, "paramnya = ", param);
 

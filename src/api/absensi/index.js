@@ -29,7 +29,7 @@ export default {
 
     getDetailAbsen(window){
         return getApiNoAuth()
-        .get('DataAbsensis?filter=%7B%22include%22%3A%22DataUser%22%7D')
+        .get('DataAbsensis?filter=%7B%22include%22%3A%22DataEmployee%22%7D')
         .then(function (response){
             console.log(response)
             return response.data

@@ -5,7 +5,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label>User Id</label>
+                <label>Nama :</label>
             </div>
             <div class="col-md-6">
                 <p>Kshiti123</p>
@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <label>Name</label>
+                <label>Status</label>
             </div>
             <div class="col-md-6">
                 <p>Kshiti Ghelani</p>
