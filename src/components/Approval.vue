@@ -1,10 +1,9 @@
 <template>
+  <div style="text-align:center;">
+    <h3>Approval Absen</h3>
   <div class="flex flex-center">
-    <div style="text-align:center;">
-        <h3>Approval Absen</h3>
-    </div>
-    
-    <table class="table table-bordered">
+    <div class="container mt-4" >
+    <table class="table table-bordered mt-4">
       <thead class="thead-light">
         <tr>
           <th width="5%">No</th>
@@ -38,7 +37,9 @@
         </tr>
       </tbody>
     </table>
+    </div>
 
+  </div>
   </div>
 </template>
 
