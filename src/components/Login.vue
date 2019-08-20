@@ -47,12 +47,11 @@ export default {
       userNow:""
     };
   },
-  computed: {
-    kakion() {
-      kaki: false
-      return kaki
-    }
-  },
+  // computed: {
+  //   idUserNow(){
+  //     return this.$ls.get("userNow")
+  //   }
+  // },
 
   methods: {
     onSubmit() {

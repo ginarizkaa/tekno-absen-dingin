@@ -56,11 +56,6 @@ export default {
   
 
   methods:{
-    format_date(value){
-         if (value) {
-           return moment(String(value)).format('YYYYMMDD')
-          }
-    },
     accept(data){
       let self = this;
       let idAbsen = data.id;
