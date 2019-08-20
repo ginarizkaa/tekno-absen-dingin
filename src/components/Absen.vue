@@ -6,7 +6,6 @@
       </div>
       <div class="column" style="height: 150px;text-align:center;">
         <div class="col">
-          <q-btn v-if="clicked=false" color="primary" label="ABSEN DATANG" @click="absenDatang()" disable/>
           <q-btn v-if="clicked=true" color="primary" label="ABSEN DATANG" @click="absenDatang()" />
           
           
@@ -24,7 +23,6 @@ import absensi_api from '../api/absensi/index';
 export default {
   data(){
     return {
-      clicked: false
 
     }
   },
@@ -50,7 +48,6 @@ export default {
           .postAbsen(window, param)
           .then(function(result) {
             console.log("berhasil")
-            this.clicked=false
             return result;
           })
           .catch(function(err) {
