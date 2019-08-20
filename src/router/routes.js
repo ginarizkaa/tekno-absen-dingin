@@ -5,6 +5,9 @@ import Approval from '@/components/Approval.vue';
 import IzinCuti from '@/components/IzinCuti.vue';
 import ApproveCuti from '@/components/ApproveCuti.vue';
 import Status from '@/components/Status.vue';
+import StatusCuti from '@/components/StatusCuti.vue';
+import StatusPagi from '@/components/StatusPagi.vue';
+import StatusPulang from '@/components/StatusPulang.vue';
 
 const routes = [
     { path: '/', component: Login, name: 'home' },
@@ -14,6 +17,10 @@ const routes = [
     { path: '/izincuti', component: IzinCuti, name: 'izincuti' },
     { path: '/approvecuti', component: ApproveCuti, name: 'approvecuti' },
     { path: '/status', component: Status, name: 'status' },
+    { path: '/statuspagi', component: StatusPagi, name: 'statuspagi' },
+    { path: '/statuspulang', component: StatusPulang, name: 'statuspulang' },
+    { path: '/statuscuti', component: StatusCuti, name: 'statuscuti' },
+
 ];
 
 export default routes;

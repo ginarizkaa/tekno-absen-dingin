@@ -1,49 +1,38 @@
 <template>
-<div class="flex flex-center">
-    <div class="q-pa-md">
-        <h3>Status Absen Pagi</h3>
+  <q-layout view="lHh Lpr lFf">
 
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nama :</label>
-            </div>
-            <div class="col-md-6">
-                <p>Kshiti123</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Status</label>
-            </div>
-            <div class="col-md-6">
-                <p>Kshiti Ghelani</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Email</label>
-            </div>
-            <div class="col-md-6">
-                <p>kshitighelani@gmail.com</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Phone</label>
-            </div>
-            <div class="col-md-6">
-                <p>123 456 7890</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Profession</label>
-            </div>
-            <div class="col-md-6">
-                <p>Web Developer and Designer</p>
-            </div>
-        </div>
-    </div>
-</div>
+    <q-page-container>
+      <StatusPagi />
+      <StatusPulang />
+      <StatusCuti />
+    </q-page-container>
 
+  </q-layout>
 </template>
+
+<script>
+import StatusPagi from "@/components/StatusPagi.vue"
+import StatusPulang from "@/components/StatusPulang.vue"
+import StatusCuti from "@/components/StatusCuti.vue"
+export default {
+  name: "LayoutDefault",
+
+  components: {
+    StatusPagi,
+    StatusPulang,
+    StatusCuti
+  },
+  
+
+  data() {
+    return {
+      
+      leftDrawerOpen: this.$q.platform.is.desktop
+    };
+  },
+  
+};
+</script>
+
+<style>
+</style>
