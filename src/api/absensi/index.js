@@ -59,5 +59,16 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
+    },
+
+    getTodayEmployee(window, idEmployee){
+        return getApiNoAuth()
+        .get('DataAbsensis/getTodayEmployee?idEmployee='+idEmployee)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
     }
 }

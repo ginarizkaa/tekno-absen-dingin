@@ -47,5 +47,16 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
-    }
+    },
+
+    getDataCutiEmployee(window, idEmployee){
+        return getApiNoAuth()
+        .get('DataCutis/getDataCutiEmployee?idEmployee='+idEmployee)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
 }
