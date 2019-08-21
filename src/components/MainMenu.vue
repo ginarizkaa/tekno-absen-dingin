@@ -29,12 +29,11 @@ export default {
     return {
     }
   },
-  computed:{
-    idUserNow(){
-      var idnya = this.$ls.get("userNow")
-      return idnya;
-    }
+  // computed:{
+  //   idUserNow(){
+  //     return this.$ls.get("userNow")
+  //   }
     
-  }
+  // }
 }
 </script>
