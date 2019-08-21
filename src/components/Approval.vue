@@ -35,8 +35,13 @@
             <button>Lihat Lokasi</button>
           </td>
           <td>
-            <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
-            <q-btn color="red" icon="cancel" @click="updateProduct(da)" />
+            <div v-if="da.status === 'waiting'">
+              <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
+              <q-btn color="red" icon="cancel" @click="reject(da)" />
+            </div>
+            <div v-else>
+              <p>no action needed</p>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -68,6 +73,44 @@ export default {
         date: data.date,
         keterangan: data.keterangan,
         status: "accepted",
+        idAsesor: self.$ls.get("userNow"),
+        location: data.location,
+        idEmployee: data.DataEmployee.id
+      }
+      console.log("id absen = ", idAbsen, "paramnya = ", param);
+
+      absensi_api
+        .putStatus(window, idAbsen, param)
+        .then(function(result) {
+            console.log("berhasil")
+            return result;
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
+
+      absensi_api
+        .getDetailAbsen(window)
+        .then(function(datas) {
+          return datas;
+        })
+        .then(function(res) {
+          self.dataAbsensi = res;
+          console.log("datanya = ", self.dataAbsensi)
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    },
+
+    reject(data){
+      let self = this;
+      let idAbsen = data.id;
+      
+      let param = {
+        date: data.date,
+        keterangan: data.keterangan,
+        status: "rejected",
         idAsesor: self.$ls.get("userNow"),
         location: data.location,
         idEmployee: data.DataEmployee.id
