@@ -6,13 +6,18 @@
       </div>
       <div class="column" style="height: 150px;text-align:center;">
         <div class="col">
-          <q-btn v-if="clicked" color="primary" label="ABSEN DATANG" @click="absenDatang()" disable/>
-          <q-btn v-if="!clicked" color="primary" label="ABSEN DATANG" @click="absenDatang()" />
+          <!-- <q-btn v-if="clicked" color="primary" label="ABSEN DATANG" @click="absenDatang()" disable/>
+          <q-btn v-if="!clicked" color="primary" label="ABSEN DATANG" @click="absenDatang()" /> -->
           
+          <q-btn v-if="!datang" color="primary" label="ABSEN DATANG" @click="absenDatang()" disable/>
+          <q-btn v-if="datang" color="primary" label="ABSEN DATANG" @click="absenDatang()" />
           
         </div>
         <div class="col">
-          <q-btn color="primary" label="ABSEN PULANG" @click="absenPulang()"/>
+          <q-btn v-if="!pulang" color="primary" label="ABSEN PULANG" @click="absenPulang()" disable/>
+          <q-btn v-if="pulang" color="primary" label="ABSEN PULANG" @click="absenPulang()"/>
+
+          <!-- <q-btn color="primary" label="ABSEN PULANG" @click="absenPulang()"/> -->
         </div>
       </div>
     </div>
@@ -27,8 +32,9 @@ export default {
   data(){
     return {
       clicked: false,
-      dataAbsensi:[]
-
+      dataAbsensiToday:[],
+      datang: true,
+      pulang: true,
     }
   },
   
@@ -47,50 +53,17 @@ export default {
           }
         }
 
-        //console.log("oke = ",param)
-         let date1 = moment().format('DD-MM-YYYY')
-         console.log(date1)
-         console.log("data absensinya ",typeof this.dataAbsensi)
-        let self = this;
-        if(self.dataAbsensi.length == 0) {
-          absensi_api
-              .postAbsen(window, param)
-              .then(function(result) {
-                console.log("berhasil")
-                self.clicked=true
-                return result;
-              })
-              .catch(function(err) {
-                console.log(err);
-              });
-        } else{
-
-          console.log("aaaappppppp")
-          for(let i=0; i<this.dataAbsensi.length;i++){
-          let date2 = moment(this.dataAbsensi[i].date).format('DD-MM-YYYY')
-            console.log(date2)
-          if(this.dataAbsensi[i].idEmployee===this.$ls.get("userNow") && date1===date2){
-            // notif
-            self.clicked=true
-            console.log("data sudah ada")
-          }else{
-            console.log("data belum ada")
-            absensi_api
-              .postAbsen(window, param)
-              .then(function(result) {
-                console.log("berhasil")
-                this.clicked=false
-                return result;
-              })
-              .catch(function(err) {
-                console.log(err);
-              });
-          }
-        }
-        }
-        
-        
-
+         absensi_api
+          .postAbsen(window, param)
+          .then(function(result) {
+            console.log("berhasil")
+            //this.datang=false;
+            location.reload(true);
+            return result;
+          })
+          .catch(function(err) {
+            console.log(err);
+          }); 
       });
     },
     
@@ -113,12 +86,12 @@ export default {
           .postAbsen(window, param)
           .then(function(result) {
             //console.log("berhasil")
+            location.reload(true);
             return result;
           })
           .catch(function(err) {
             console.log(err);
           });
-      
       
       });
     
@@ -131,17 +104,30 @@ export default {
     let self = this;
 
     absensi_api
-      .getDetailAbsen(window)
+      .getToday(window)
       .then(function(datas) {
         return datas;
       })
       .then(function(res) {
-        self.dataAbsensi = res;
-        console.log("datanya = ", self.dataAbsensi)
+        self.dataAbsensiToday = res;
+        console.log("datanya = ", self.dataAbsensiToday)
+        for(let j=0; j<self.dataAbsensiToday.length; j++){
+          if(self.dataAbsensiToday[j].idEmployee === self.$ls.get("userNow")){
+            if(self.dataAbsensiToday[j].keterangan === "datang"){
+              self.datang=false;
+            }else if(self.dataAbsensiToday[j].keterangan === "pulang"){
+              self.pulang=false;
+            }
+          }
+          else{
+            //do Nothing
+          }
+        }
       })
       .catch(function(err) {
         console.log(err);
       });
+
   }
 }
 </script>

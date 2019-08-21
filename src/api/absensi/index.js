@@ -27,6 +27,7 @@ export default {
         })
     },
 
+    // get detail include employee
     getDetailAbsen(window){
         return getApiNoAuth()
         .get('DataAbsensis?filter=%7B%22include%22%3A%22DataEmployee%22%7D')
@@ -41,6 +42,17 @@ export default {
     putStatus(window, idAbsen, param){
         return getApiNoAuth()
         .put('DataAbsensis/'+idAbsen, param)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
+
+    getToday(window){
+        return getApiNoAuth()
+        .get('DataAbsensis/getToday')
         .then(function (response){
             console.log(response)
             return response.data
