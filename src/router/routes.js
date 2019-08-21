@@ -8,6 +8,7 @@ import Status from '@/components/Status.vue';
 import StatusCuti from '@/components/StatusCuti.vue';
 import StatusPagi from '@/components/StatusPagi.vue';
 import StatusPulang from '@/components/StatusPulang.vue';
+import Map from '@/components/Map.vue';
 
 const routes = [
     { path: '/', component: Login, name: 'home' },
@@ -20,6 +21,7 @@ const routes = [
     { path: '/statuspagi', component: StatusPagi, name: 'statuspagi' },
     { path: '/statuspulang', component: StatusPulang, name: 'statuspulang' },
     { path: '/statuscuti', component: StatusCuti, name: 'statuscuti' },
+    { path: '/map', component: Map, name: 'map' },
 
 ];
 

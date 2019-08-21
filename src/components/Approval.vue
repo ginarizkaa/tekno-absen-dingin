@@ -7,10 +7,11 @@
       <thead class="thead-light">
         <tr>
           <th width="5%">No</th>
-          <th width="30%">Nama</th>
+          <th width="25%">Nama</th>
           <th width="10%">Keterangan</th>
-          <th width="30%">Status</th>
+          <th width="25%">Status</th>
           <th width="10%">Waktu</th>
+          <th width="10%">Lokasi</th>
           <th width="10%">Action</th>
         </tr>
       </thead>
@@ -29,6 +30,9 @@
           </td>
           <td>
             {{ da.date | formatJam }}
+          </td>
+          <td>
+            <button>Lihat Lokasi</button>
           </td>
           <td>
             <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
