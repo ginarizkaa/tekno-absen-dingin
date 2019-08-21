@@ -22,6 +22,7 @@ const routes = [
     { path: '/statuspulang', component: StatusPulang, name: 'statuspulang' },
     { path: '/statuscuti', component: StatusCuti, name: 'statuscuti' },
     { path: '/map', component: Map, name: 'map' },
+    { path: '/map/:lat,:long', component: Map, name: 'map2', props: true},
 
 ];
 

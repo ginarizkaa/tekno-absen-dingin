@@ -32,7 +32,7 @@
             {{ da.date | formatJam }}
           </td>
           <td>
-            <button>Lihat Lokasi</button>
+            <router-link :to="{ name: 'map2', params: { lat: da.location.lat, long : da.location.lng } }">Lihat</router-link>
           </td>
           <td>
             <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
