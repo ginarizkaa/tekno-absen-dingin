@@ -6,6 +6,11 @@
                 <div v-for="data in dataAbsensiToday" :key="data.id">
                     <div v-if="data.keterangan==='Pulang'">
                         <tr height="50px">
+                            <td width="60%"> Nama </td>
+                            <td width="5%"> : </td>
+                            <td> {{data.DataEmployee.nama }} </td>
+                        </tr>
+                        <tr height="50px">
                             <td width="60%"> Tanggal </td>
                             <td width="5%"> : </td>
                             <td> {{data.date | formatDate }} </td>
@@ -18,7 +23,14 @@
                         <tr height="50px">
                             <td> Status</td>
                             <td> : </td>
-                            <td> {{data.status}} </td>
+                            <td> 
+                                <div v-if="data.status === 'Waiting'">
+                                    {{ data.status }}
+                                </div>
+                                <div v-else>
+                                    {{ data.status }} by {{data.DataAsesor.nama }}
+                                </div>
+                            </td>
                         </tr>
                         <tr height="50px">
                             <td> Lokasi</td>
