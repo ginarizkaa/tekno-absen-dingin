@@ -159,7 +159,7 @@ export default {
     let self = this;
 
     absensi_api
-      .getDetailAbsen(window)
+      .getToday(window)
       .then(function(datas) {
         return datas;
       })
