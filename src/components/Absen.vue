@@ -40,10 +40,11 @@ export default {
   
   methods:{
     absenDatang(){
+      let self = this;
       this.$getLocation()
       .then(coordinates => {
         let param = {
-          idEmployee: this.$ls.get("userNow"),
+          idEmployee: self.$ls.get("userNow"),
           keterangan: "datang",
           status: "waiting",
           idAsesor: "",
@@ -58,7 +59,8 @@ export default {
           .then(function(result) {
             console.log("berhasil")
             //this.datang=false;
-            location.reload(true);
+            //location.reload(true);
+            self.$router.push("mainmenu");
             return result;
           })
           .catch(function(err) {
