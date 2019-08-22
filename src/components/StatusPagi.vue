@@ -2,46 +2,34 @@
     <div>
         <h6 style="text-align:center;">Status Absen Pagi</h6> 
         <div class="flex flex-center">
-            <table class="table" width="20%" height="200px">
+            <table class="table" width="60%" height="100px">
                 <div v-for="data in dataAbsensiToday" :key="data.id">
-                    <div v-if="data.keterangan=='datang'">
-                    <tr>
-                        <td> Waktu Datang </td>
-                        <td> : </td>
-                        <td> {{data.date}} </td>
-                    </tr>
-                    <tr>
-                        <td> Status</td>
-                        <td> : </td>
-                        <td> {{data.status}} </td>
-                    </tr>
-                    <tr>
-                        <td> Lokasi</td>
-                        <td> : </td>
-                        <td> Lihat </td>
-                    </tr>
+                    <div v-if="data.keterangan==='Datang'">
+                        <tr height="50px">
+                            <td width="60%"> Tanggal </td>
+                            <td width="5%"> : </td>
+                            <td> {{data.date | formatDate }} </td>
+                        </tr>
+                        <tr height="50px">
+                            <td> Jam Datang </td>
+                            <td> : </td>
+                            <td> {{data.date | formatJam }} WIB</td>
+                        </tr>
+                        <tr height="50px">
+                            <td> Status</td>
+                            <td> : </td>
+                            <td> {{data.status}} </td>
+                        </tr>
+                        <tr height="50px">
+                            <td> Lokasi</td>
+                            <td> : </td>
+                            <td> <router-link :to="{ name: 'map2', params: { lat: data.location.lat, long : data.location.lng } }">Lihat</router-link> </td>
+                        </tr>
                     </div>
-                    <div v-if="data.keterangan=='pulang'">
-
-                    <tr>
-                        <td> Waktu Datang </td>
-                        <td> : </td>
-                        <td> {{data.date}} </td>
-                    </tr>
-                    <tr>
-                        <td> Status</td>
-                        <td> : </td>
-                        <td> {{data.status}} </td>
-                    </tr>
-                    <tr>
-                        <td> Lokasi</td>
-                        <td> : </td>
-                        <td> Lihat </td>
-                    </tr>
+                    <div v-else-if="dataAbsensiToday.length === 0 || dataAbsensiToday.length === 1">
+                        <p style="text-align:center;">Anda belum Absen</p>
                     </div>
-                    
                 </div>
-                
             </table>
         </div>
     </div>

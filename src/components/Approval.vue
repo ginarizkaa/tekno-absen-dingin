@@ -20,13 +20,18 @@
         <tr v-for="(da, index) in dataAbsensi" :key="index">
           <td>{{ index + 1 }}</td>
           <td>
-           {{ da.DataEmployee.nama   }}
+           {{ da.DataEmployee.nama }}
           </td>
           <td>
             {{ da.keterangan }}
           </td>
           <td>
-            {{ da.status }}
+            <div v-if="da.status === 'Waiting'">
+              {{ da.status }}
+            </div>
+            <div v-else>
+              {{ da.status }} by {{ da.DataAsesor.nama }}
+            </div>
           </td>
           <td>
             {{ da.date | formatJam }}
@@ -35,7 +40,11 @@
             <router-link :to="{ name: 'map2', params: { lat: da.location.lat, long : da.location.lng } }">Lihat</router-link>
           </td>
           <td>
-            <div v-if="da.status === 'waiting'">
+            <div v-if="da.status === 'Waiting'">
+              <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
+              <q-btn color="red" icon="cancel" @click="reject(da)" />
+            </div>
+            <div v-else-if="da.status === 'Rejected'">
               <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
               <q-btn color="red" icon="cancel" @click="reject(da)" />
             </div>
@@ -72,7 +81,7 @@ export default {
       let param = {
         date: data.date,
         keterangan: data.keterangan,
-        status: "accepted",
+        status: "Approved",
         idAsesor: self.$ls.get("userNow"),
         location: data.location,
         idEmployee: data.DataEmployee.id
@@ -83,6 +92,7 @@ export default {
         .putStatus(window, idAbsen, param)
         .then(function(result) {
             console.log("berhasil")
+            window.location.reload(true)
             return result;
           })
           .catch(function(err) {
@@ -110,7 +120,7 @@ export default {
       let param = {
         date: data.date,
         keterangan: data.keterangan,
-        status: "rejected",
+        status: "Rejected",
         idAsesor: self.$ls.get("userNow"),
         location: data.location,
         idEmployee: data.DataEmployee.id
@@ -121,6 +131,7 @@ export default {
         .putStatus(window, idAbsen, param)
         .then(function(result) {
             console.log("berhasil")
+            window.location.reload(true)
             return result;
           })
           .catch(function(err) {
