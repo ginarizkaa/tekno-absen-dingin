@@ -43,10 +43,11 @@ export default {
       let self = this;
       this.$getLocation()
       .then(coordinates => {
+        let self = this
         let param = {
-          idEmployee: self.$ls.get("userNow"),
-          keterangan: "datang",
-          status: "waiting",
+          idEmployee: this.$ls.get("userNow"),
+          keterangan: "Datang",
+          status: "Waiting",
           idAsesor: "",
           location: {
             lat: coordinates.lat,
@@ -59,8 +60,7 @@ export default {
           .then(function(result) {
             console.log("berhasil")
             //this.datang=false;
-            //location.reload(true);
-            self.$router.push("mainmenu");
+            self.$router.push("statuspagi");
             return result;
           })
           .catch(function(err) {
@@ -72,10 +72,11 @@ export default {
     absenPulang(){
       this.$getLocation()
       .then(coordinates => {
+        let self = this
         let param = {
           idEmployee: this.$ls.get("userNow"),
-          keterangan: "pulang",
-          status: "waiting",
+          keterangan: "Pulang",
+          status: "Waiting",
           idAsesor: "",
           location: {
             lat: coordinates.lat,
@@ -88,7 +89,7 @@ export default {
           .postAbsen(window, param)
           .then(function(result) {
             //console.log("berhasil")
-            location.reload(true);
+            self.$router.push("statuspulang");
             return result;
           })
           .catch(function(err) {
@@ -115,9 +116,9 @@ export default {
         console.log("datanya = ", self.dataAbsensiToday)
         for(let j=0; j<self.dataAbsensiToday.length; j++){
           if(self.dataAbsensiToday[j].idEmployee === self.$ls.get("userNow")){
-            if(self.dataAbsensiToday[j].keterangan === "datang"){
+            if(self.dataAbsensiToday[j].keterangan === "Datang"){
               self.datang=false;
-            }else if(self.dataAbsensiToday[j].keterangan === "pulang"){
+            }else if(self.dataAbsensiToday[j].keterangan === "Pulang"){
               self.pulang=false;
             }
           }

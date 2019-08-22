@@ -65,14 +65,14 @@ export default {
               color: "red-5",
               textColor: "white",
               icon: "fas fa-exclamation-triangle",
-              message: "username atau password salah, tolong"
+              message: "Username atau Password salah"
             });
           } else {
             self.$q.notify({
               color: "green-4",
               textColor: "white",
               icon: "fas fa-check-circle",
-              message: "kamu telah login"
+              message: "Kamu telah login"
             });
             self.$ls.set("userNow", result.id);
             // console.log("id nya dia = ", self.$ls.get("userNow"))

@@ -65,7 +65,7 @@ export default {
       datacuti_api
         .postDataCuti(window, param)
         .then(function(result) {
-          console.log("berhasil")
+          self.$router.push("statuscuti");
           return result;
         })
         .catch(function(err) {

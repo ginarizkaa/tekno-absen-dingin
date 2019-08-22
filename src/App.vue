@@ -12,7 +12,8 @@
       <router-view />
       <footery v-if="['home'].indexOf($route.name) > -1"/>
       <footerx v-if="['mainmenu'].indexOf($route.name) > -1"/>
-      <footerz v-if="['map2','map','status','statuspagi','statuspulang','statuscuti','absen', 'approval','izincuti','approvecuti'].indexOf($route.name) > -1"/>
+      <footerz v-if="['map2','map','absen', 'approval','izincuti','approvecuti'].indexOf($route.name) > -1"/>
+      <footerw v-if="['status','statuspagi','statuspulang','statuscuti',].indexOf($route.name) > -1"/>
     </q-page-container>
 
   </q-layout>
@@ -22,13 +23,15 @@
 import Footerz from "@/components/Footerz.vue"
 import Footery from "@/components/Footery.vue"
 import Footerx from "@/components/Footerx.vue"
+import Footerw from "@/components/Footerw.vue"
 export default {
   name: "LayoutDefault",
 
   components: {
     Footerz,
     Footery,
-    Footerx
+    Footerx,
+    Footerw
   },
   beforeCreate() {
   },

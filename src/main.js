@@ -28,7 +28,7 @@ import moment from 'moment'
 Vue.config.productionTip = false
 Vue.filter('formatJam', function(value) {
   if (value) {
-    return moment(String(value)).format('hh:mm')
+    return moment(String(value)).format('HH:MM')
   }
 });
 

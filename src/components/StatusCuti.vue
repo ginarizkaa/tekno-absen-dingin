@@ -3,34 +3,39 @@
   <h6>Status Cuti</h6>
   <div class="flex flex-center">
     <div class="container mt-4" >
-      <table class="table table-bordered mt-4">
-        <thead class="thead-light">
-          <tr>
-            <th width="5%">No</th>
-            <th width="10%">Awal Cuti</th>
-            <th width="10%">Akhir Cuti</th>
-            <th width="25%">Ket</th>
-            <th width="10%">Status</th>
-          </tr>
-        </thead>
-        <tbody style="text-align:center;">
-          <tr v-for="(dc, index) in dataCuti" :key="index">
-            <td>{{ index + 1 }}</td>
-            <td>
-              {{ dc.dateAwal | formatDate }}
-            </td>
-            <td>
-              {{ dc.dateAkhir | formatDate }}
-            </td>
-            <td>
-              {{ dc.keterangan }}
-            </td>
-            <td>
-              {{ dc.status }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div v-if="dataCuti.length === 0">
+        <p>Anda belum mengambil cuti</p> 
+      </div>
+      <div v-else>
+        <table class="table table-bordered mt-4">
+          <thead class="thead-light">
+            <tr>
+              <th width="5%">No</th>
+              <th width="20%">Awal Cuti</th>
+              <th width="20%">Akhir Cuti</th>
+              <th width="25%">Ket</th>
+              <th width="10%">Status</th>
+            </tr>
+          </thead>
+          <tbody style="text-align:center;">
+            <tr v-for="(dc, index) in dataCuti" :key="index">
+              <td>{{ index + 1 }}</td>
+              <td>
+                {{ dc.dateAwal | formatDate }}
+              </td>
+              <td>
+                {{ dc.dateAkhir | formatDate }}
+              </td>
+              <td>
+                {{ dc.keterangan }}
+              </td>
+              <td>
+                {{ dc.status }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
