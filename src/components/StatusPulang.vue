@@ -3,6 +3,9 @@
         <h6 style="text-align:center;">Status Absen Pulang</h6> 
         <div class="flex flex-center">
             <table class="table" width="60%" height="100px">
+                <div v-if="dataAbsensiToday.length === 0 || dataAbsensiToday.length === 1">
+                        <p style="text-align:center;">Anda belum Absen</p>
+                    </div>
                 <div v-for="data in dataAbsensiToday" :key="data.id">
                     <div v-if="data.keterangan==='Pulang'">
                         <tr height="50px">
@@ -38,9 +41,7 @@
                             <td> <router-link :to="{ name: 'map2', params: { lat: data.location.lat, long : data.location.lng } }">Lihat</router-link> </td>
                         </tr>
                     </div>
-                    <div v-else-if="dataAbsensiToday.length === 0 || dataAbsensiToday.length === 1">
-                        <p style="text-align:center;">Anda belum Absen</p>
-                    </div>
+                    
                 </div>
             </table>
         </div>
