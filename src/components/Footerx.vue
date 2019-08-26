@@ -1,5 +1,5 @@
 <template>
-    <q-footer>
+    <q-footer elevated class="bg-black">
       <q-toolbar>
         <q-btn flat icon="account_circle" to="/status"/>
         <q-space></q-space>

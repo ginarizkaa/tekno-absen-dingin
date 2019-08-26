@@ -19,8 +19,8 @@
         <q-input v-model="text" filled type="textarea" hint="Keterangan" />
 
         <div>
-          <q-btn label="Submit" type="submit" color="primary" />
-          <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+          <q-btn label="Submit" type="submit" color="secondary" />
+          <q-btn label="Reset" type="reset" color="white" flat class="q-ml-sm" />
         </div>
 
       </q-form>

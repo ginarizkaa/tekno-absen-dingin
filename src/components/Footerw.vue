@@ -1,6 +1,6 @@
 <template>
     <q-footer>
-      <q-toolbar>
+      <q-toolbar elevated class="bg-black">
         <q-btn flat icon="navigate_before" to="/mainmenu"/>
         <q-space></q-space>
         <q-btn flat icon="exit_to_app" @click="logout()"/>

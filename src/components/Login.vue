@@ -24,8 +24,8 @@
         />
 
         <div>
-          <q-btn label="Login" type="submit" color="primary" />
-          <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+          <q-btn label="Login" type="submit" color="secondary" />
+          <q-btn label="Reset" type="reset" color="white" flat class="q-ml-sm" />
         </div>
       </q-form>
     </div>
@@ -33,6 +33,15 @@
 </template>
 
 <style>
+.q-field--filled .q-field__control {
+    background: white !important;
+}
+.q-field__native, .q-field__prefix, .q-field__suffix {
+    color: black !important;
+}
+.q-field__bottom {
+    color: white !important;
+}
 </style>
 
 <script>

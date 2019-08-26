@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" class="front">
     <q-header elevated class="glossy">
       <q-toolbar>
         <q-toolbar-title>
@@ -8,7 +8,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
+    <q-page-container class="front">
       <router-view />
       <footery v-if="['home'].indexOf($route.name) > -1"/>
       <footerx v-if="['mainmenu'].indexOf($route.name) > -1"/>
@@ -47,4 +47,8 @@ export default {
 </script>
 
 <style>
+.front {
+  background-color: #171929;
+  color:white;
+}
 </style>

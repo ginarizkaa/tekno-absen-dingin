@@ -1,5 +1,5 @@
 <template>
-    <q-footer>
+    <q-footer elevated class="bg-black">
       <q-toolbar>
         <q-toolbar-title>
           <div style="text-align:center; font-size:11px">Copyright by @Dingin 2019</div>

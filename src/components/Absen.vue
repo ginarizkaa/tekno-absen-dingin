@@ -1,23 +1,52 @@
 <template>
   <div class="flex flex-center">
-    <div class="q-pa-md q-gutter-sm">
-      <div style="text-align:center;">
-        <h3>Absen</h3>
-      </div>
-      <div class="column" style="height: 150px;text-align:center;">
+    <div class="q-pa-md q-gutter-sm" style="width:100%">
+      <div class="column" style="text-align:center;">
         <div class="col">
-          <!-- <q-btn v-if="clicked" color="primary" label="ABSEN DATANG" @click="absenDatang()" disable/>
-          <q-btn v-if="!clicked" color="primary" label="ABSEN DATANG" @click="absenDatang()" /> -->
-          
-          <q-btn v-if="!datang" color="primary" label="ABSEN DATANG" @click="absenDatang()" disable/>
-          <q-btn v-if="datang" color="primary" label="ABSEN DATANG" @click="absenDatang()" />
-          
+          <q-btn v-if="!datang" color="secondary" style="width:100%;margin-top:8px" @click="absenDatang()" disable>
+            <div class="column" style="text-align:center;">
+              <div class="col">
+                <img src="../assets/datang.png" height="100" width="100" style="margin:8px">
+              </div>
+              <div class="col">
+                ABSEN DATANG
+              </div>
+            </div>
+          </q-btn>
+
+          <q-btn v-if="datang" color="secondary" style="width:100%;margin-top:8px" @click="absenDatang()">
+            <div class="column" style="text-align:center;">
+              <div class="col">
+                <img src="../assets/datang.png" height="100" width="100" style="margin:8px">
+              </div>
+              <div class="col">
+                ABSEN DATANG
+              </div>
+            </div>
+          </q-btn>
         </div>
         <div class="col">
-          <q-btn v-if="!pulang" color="primary" label="ABSEN PULANG" @click="absenPulang()" disable/>
-          <q-btn v-if="pulang" color="primary" label="ABSEN PULANG" @click="absenPulang()"/>
+          <q-btn v-if="!datang" color="secondary" style="width:100%;margin-top:20px" @click="absenPulang()" disable>
+            <div class="column" style="text-align:center;">
+              <div class="col">
+                <img src="../assets/pulang.png" height="100" width="120" style="margin:8px">
+              </div>
+              <div class="col">
+                ABSEN PULANG
+              </div>
+            </div>
+          </q-btn>
 
-          <!-- <q-btn color="primary" label="ABSEN PULANG" @click="absenPulang()"/> -->
+          <q-btn v-if="datang" color="secondary" style="width:100%;margin-top:20px" @click="absenPulang()">
+            <div class="column" style="text-align:center;">
+              <div class="col">
+                <img src="../assets/pulang.png" height="100" width="120" style="margin:8px">
+              </div>
+              <div class="col">
+                ABSEN PULANG
+              </div>
+            </div>
+          </q-btn>
         </div>
       </div>
     </div>

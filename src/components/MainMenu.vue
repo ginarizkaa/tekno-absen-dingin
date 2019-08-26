@@ -1,32 +1,83 @@
 <template>
   <div class="flex flex-center">
-    <div class="q-pa-md q-gutter-sm">
-      <div style="text-align:center;">
-        <h3>Main Menu</h3>
-      </div>
+    <div class="q-pa-md q-gutter-sm" style="text-align:center;width:100%">
       <div v-if="dataUser.roles=='Developer'">
         <div class="column" style="height: 150px;text-align:center;">
           <div class="col">
-            <q-btn color="primary" label="ABSEN" style="width:60%;" to="/absen"/>
+            <q-btn color="secondary" style="width:100%;margin-top:8px" to="/absen">
+              <div class="column" style="text-align:center;">
+                <div class="col">
+                  <img src="../assets/absen.png" height="100" width="100">
+                </div>
+                <div class="col">
+                  ABSEN
+                </div>
+              </div>
+            </q-btn>
           </div>
           <div class="col">
-            <q-btn color="primary" label="IZIN CUTI" style="width:60%;" to="/izincuti"/>
+            <q-btn color="secondary" style="width:100%;margin-top:20px" to="/izincuti">
+              <div class="column" style="text-align:center;">
+                <div class="col">
+                  <img src="../assets/logo.png" height="100" width="100">
+                </div>
+                <div class="col">
+                  IZIN CUTI
+                </div>
+              </div>
+            </q-btn>
           </div>
         </div>
       </div>
-      <div v-if="dataUser.roles=='Project Manager'">
-        <div class="column" style="height: 250px;text-align:center;">
+      <div v-if="dataUser.roles=='Project Manager'">       
+        <div class="column" style="">
           <div class="col">
-            <q-btn color="primary" label="ABSEN" style="width:60%;" to="/absen"/>
+            <q-btn color="secondary" style="width:100%;margin-top:8px" to="/absen">
+              <div class="column" style="text-align:center;">
+                <div class="col">
+                  <img src="../assets/absen.png" height="100" width="100" style="margin:8px">
+                </div>
+                <div class="col">
+                  ABSEN
+                </div>
+              </div>
+            </q-btn>
           </div>
           <div class="col">
-            <q-btn color="primary" label="IZIN CUTI" style="width:60%;" to="/izincuti"/>
+            <q-btn color="secondary" style="width:100%;margin-top:20px" to="/izincuti">
+              <div class="column" style="text-align:center;">
+                <div class="col">
+                  <img src="../assets/cuti.png" height="100" width="100" style="margin:8px">
+                </div>
+                <div class="col">
+                  IZIN CUTI
+                </div>
+              </div>
+            </q-btn>
           </div>
           <div class="col">
-            <q-btn color="primary" label="APPROVAL" style="width:60%;" to="/approval"/>
+            <q-btn color="secondary" style="width:100%;margin-top:20px" to="/approval">
+              <div class="column" style="text-align:center;">
+                <div class="col">
+                  <img src="../assets/approval.png" height="100" width="100" style="margin:8px">
+                </div>
+                <div class="col">
+                  APPROVAL
+                </div>
+              </div>
+            </q-btn>
           </div>
           <div class="col">
-            <q-btn color="primary" label="APPROVAL CUTI" style="width:60%;" to="/approvecuti"/>
+            <q-btn color="secondary" style="width:100%;margin-top:20px;margin-botton:8px;" to="/approvecuti">
+              <div class="column" style="text-align:center;">
+                <div class="col">
+                  <img src="../assets/approvalcuti.png" height="100" width="100" style="margin:8px">
+                </div>
+                <div class="col">
+                  APPROVAL CUTI
+                </div>
+              </div>
+            </q-btn>
           </div>
         </div>
       </div>

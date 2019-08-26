@@ -1,5 +1,5 @@
 <template>
-    <q-footer>
+    <q-footer elevated class="bg-black">
       <q-toolbar>
         <q-btn flat icon="navigate_before" @click="$router.go(-1)"/>
         <q-space></q-space>
