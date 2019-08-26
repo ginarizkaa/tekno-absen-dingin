@@ -47,11 +47,6 @@ export default {
       userNow:""
     };
   },
-  // computed: {
-  //   idUserNow(){
-  //     return this.$ls.get("userNow")
-  //   }
-  // },
 
   methods: {
     onSubmit() {
