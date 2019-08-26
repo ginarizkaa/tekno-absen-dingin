@@ -5,7 +5,7 @@
         <h3>Main Menu</h3>
       </div>
       <div v-if="dataUser.roles=='Developer'">
-        <div class="column" style="height: 100px;text-align:center;">
+        <div class="column" style="height: 150px;text-align:center;">
           <div class="col">
             <q-btn color="primary" label="ABSEN" style="width:60%;" to="/absen"/>
           </div>
