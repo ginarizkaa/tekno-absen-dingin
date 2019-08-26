@@ -4,7 +4,7 @@
       <div style="text-align:center;">
         <h3>Main Menu</h3>
       </div>
-      <div v-if="dataUser.roles=='Developer'">
+      <div v-if="dataUser.length===0">
         <div class="column" style="height: 150px;text-align:center;">
           <div class="col">
             <q-btn color="primary" label="ABSEN" style="width:60%;" to="/absen"/>
@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <div v-if="dataUser.roles=='Project Manager'">
+      <div v-if="dataUser.length!==0">
         <div class="column" style="height: 250px;text-align:center;">
           <div class="col">
             <q-btn color="primary" label="ABSEN" style="width:60%;" to="/absen"/>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import datauser_api from '../api/datauser/index'
+import absensi_api from '../api/absensi/index'
 export default {
   data(){
     return {
@@ -46,8 +46,8 @@ export default {
   beforeCreate(){
     let self = this;
 
-    datauser_api
-      .getEmployeeById(window, self.$ls.get("userNow"))
+    absensi_api
+      .getTodayBySpv(window, self.$ls.get("userNow"))
       .then(function(datas) {
         return datas;
       })

@@ -72,7 +72,6 @@ export default {
     
   },
   
-
   methods:{
     accept(data){
       let self = this;
@@ -159,7 +158,7 @@ export default {
     let self = this;
 
     absensi_api
-      .getToday(window)
+      .getTodayBySpv(window, self.$ls.get("userNow"))
       .then(function(datas) {
         return datas;
       })
