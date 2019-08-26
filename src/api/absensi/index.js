@@ -70,5 +70,16 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
+    },
+
+    getTodayBySpv(window, idSpv){
+        return getApiNoAuth()
+        .get('DataAbsensis/getTodayBySpv?idSpv='+idSpv)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
     }
 }

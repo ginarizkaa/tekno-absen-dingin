@@ -1,13 +1,13 @@
 <template>
   <div class="flex flex-center">
     <div class="q-pa-md q-gutter-sm" style="text-align:center;width:100%">
-      <div v-if="dataUser.roles=='Developer'">
-        <div class="column" style="height: 150px;text-align:center;">
+      <div v-if="dataUser.length===0">
+        <div class="column">
           <div class="col">
             <q-btn color="secondary" style="width:100%;margin-top:8px" to="/absen">
               <div class="column" style="text-align:center;">
                 <div class="col">
-                  <img src="../assets/absen.png" height="100" width="100">
+                  <img src="../assets/absen.png" height="100" width="100" style="margin:8px">
                 </div>
                 <div class="col">
                   ABSEN
@@ -19,7 +19,7 @@
             <q-btn color="secondary" style="width:100%;margin-top:20px" to="/izincuti">
               <div class="column" style="text-align:center;">
                 <div class="col">
-                  <img src="../assets/logo.png" height="100" width="100">
+                  <img src="../assets/cuti.png" height="100" width="100" style="margin:8px">
                 </div>
                 <div class="col">
                   IZIN CUTI
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <div v-if="dataUser.roles=='Project Manager'">       
+      <div v-if="dataUser.length!==0">
         <div class="column" style="">
           <div class="col">
             <q-btn color="secondary" style="width:100%;margin-top:8px" to="/absen">
@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import datauser_api from '../api/datauser/index'
+import absensi_api from '../api/absensi/index'
 export default {
   data(){
     return {
@@ -97,8 +97,8 @@ export default {
   beforeCreate(){
     let self = this;
 
-    datauser_api
-      .getEmployeeById(window, self.$ls.get("userNow"))
+    absensi_api
+      .getTodayBySpv(window, self.$ls.get("userNow"))
       .then(function(datas) {
         return datas;
       })

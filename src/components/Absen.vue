@@ -55,6 +55,7 @@
 
 <script>
 import absensi_api from '../api/absensi/index'
+import datauser_api from '../api/datauser/index'
 import moment from 'moment'
 
 export default {
@@ -64,6 +65,7 @@ export default {
       dataAbsensiToday:[],
       datang: true,
       pulang: true,
+      dataUser:[]
     }
   },
   
@@ -77,7 +79,7 @@ export default {
           idEmployee: this.$ls.get("userNow"),
           keterangan: "Datang",
           status: "Waiting",
-          idAsesor: "",
+          idAsesor: dataUser.idSpv,
           location: {
             lat: coordinates.lat,
             lng: coordinates.lng
@@ -160,6 +162,19 @@ export default {
         console.log(err);
       });
 
+    datauser_api
+      .getEmployeeById(window, self.$ls.get("userNow"))
+      .then(function(datas) {
+        return datas;
+      })
+      .then(function(res) {
+        self.dataUser = res;
+        console.log("data user = ", self.dataUser)
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+      
   }
 }
 </script>

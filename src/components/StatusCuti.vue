@@ -54,10 +54,9 @@ export default {
 
   beforeCreate(){
     let self = this;
-    let idEmployeeX = self.$ls.get("userNow")
 
     datacuti_api
-      .getDataCutiEmployee(window, idEmployeeX)
+      .getDataCutiEmployee(window, self.$ls.get("userNow"))
       .then(function(datas) {
         return datas;
       })
