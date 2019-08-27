@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import absensi_api from '../api/absensi/index'
+import datauser_api from '../api/datauser/index'
 export default {
   data(){
     return {
@@ -97,8 +97,8 @@ export default {
   beforeCreate(){
     let self = this;
 
-    absensi_api
-      .getTodayBySpv(window, self.$ls.get("userNow"))
+    datauser_api
+      .getDataBySpv(window, self.$ls.get("userNow"))
       .then(function(datas) {
         return datas;
       })

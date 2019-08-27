@@ -41,11 +41,11 @@
           </td>
           <td>
             <div v-if="da.status === 'Waiting'">
-              <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
+              <q-btn color="blue" align="center" icon="check" @click="accept(da)" />
               <q-btn color="red" icon="cancel" @click="reject(da)" />
             </div>
             <div v-else-if="da.status === 'Rejected'">
-              <q-btn color="secondary" align="center" icon="check" @click="accept(da)" />
+              <q-btn color="blue" align="center" icon="check" @click="accept(da)" />
               <q-btn color="red" icon="cancel" @click="reject(da)" />
             </div>
             <div v-else>

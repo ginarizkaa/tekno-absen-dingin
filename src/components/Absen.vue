@@ -26,7 +26,7 @@
           </q-btn>
         </div>
         <div class="col">
-          <q-btn v-if="!datang" color="secondary" style="width:100%;margin-top:20px" @click="absenPulang()" disable>
+          <q-btn v-if="!pulang" color="secondary" style="width:100%;margin-top:20px" @click="absenPulang()" disable>
             <div class="column" style="text-align:center;">
               <div class="col">
                 <img src="../assets/pulang.png" height="100" width="120" style="margin:8px">
@@ -37,7 +37,7 @@
             </div>
           </q-btn>
 
-          <q-btn v-if="datang" color="secondary" style="width:100%;margin-top:20px" @click="absenPulang()">
+          <q-btn v-if="pulang" color="secondary" style="width:100%;margin-top:20px" @click="absenPulang()">
             <div class="column" style="text-align:center;">
               <div class="col">
                 <img src="../assets/pulang.png" height="100" width="120" style="margin:8px">
@@ -76,10 +76,10 @@ export default {
       .then(coordinates => {
         let self = this
         let param = {
-          idEmployee: this.$ls.get("userNow"),
+          idEmployee: self.$ls.get("userNow"),
           keterangan: "Datang",
           status: "Waiting",
-          idAsesor: dataUser.idSpv,
+          idAsesor: self.dataUser.idSpv,
           location: {
             lat: coordinates.lat,
             lng: coordinates.lng
@@ -91,6 +91,12 @@ export default {
           .then(function(result) {
             console.log("berhasil")
             //this.datang=false;
+            self.$q.notify({
+              color: "blue",
+              textColor: "white",
+              icon: "fas fa-exclamation-triangle",
+              message: "Absen Pagi Berhasil!"
+            });
             self.$router.push("statuspagi");
             return result;
           })
@@ -108,7 +114,7 @@ export default {
           idEmployee: this.$ls.get("userNow"),
           keterangan: "Pulang",
           status: "Waiting",
-          idAsesor: "",
+          idAsesor: self.dataUser.idSpv,
           location: {
             lat: coordinates.lat,
             lng: coordinates.lng
@@ -120,6 +126,12 @@ export default {
           .postAbsen(window, param)
           .then(function(result) {
             //console.log("berhasil")
+            self.$q.notify({
+              color: "blue",
+              textColor: "white",
+              icon: "fas fa-exclamation-triangle",
+              message: "Absen Sore Berhasil!"
+            });
             self.$router.push("statuspulang");
             return result;
           })

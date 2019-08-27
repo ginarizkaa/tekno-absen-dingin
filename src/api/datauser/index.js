@@ -14,5 +14,16 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
-    }
+    },
+
+    getDataBySpv(window, idSpv){
+        return getApiNoAuth()
+        .get('DataUsers/getDataBySpv?idSpv='+idSpv)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
 }
