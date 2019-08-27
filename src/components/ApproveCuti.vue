@@ -38,7 +38,7 @@
               {{ dc.status }}
             </td>
             <td>
-              <q-btn color="secondary" icon="check" @click="accept(dc)" />
+              <q-btn color="blue" icon="check" @click="accept(dc)" />
               <q-btn color="red" icon="cancel" @click="updateProduct(item)" />
             </td>
           </tr>
@@ -106,7 +106,7 @@ export default {
     let self = this;
 
     datacuti_api
-      .getDetailCuti(window)
+      .getDataCutiBySpv(window, self.$ls.get("userNow"))
       .then(function(datas) {
         return datas;
       })

@@ -34,11 +34,14 @@
 <script>
 import tabelcuti_api from '../api/tabelcuti/index'
 import datacuti_api from '../api/datacuti/index'
+import datauser_api from '../api/datauser/index'
+
 
 export default {
   name: "Login",
   data() {
     return {
+      dataUser: [],
       tabelCutiList: [],
       jenisCuti:"",
       dateAwal: "",
@@ -57,7 +60,8 @@ export default {
         dateAwal:self.dateAwal,
         dateAkhir:self.dateAkhir,
         keterangan:self.text,
-        status:"waiting"
+        status:"waiting",
+        idAsesor: self.dataUser.idSpv
       }
 
       console.log("datanya = ", param)
@@ -72,21 +76,6 @@ export default {
           console.log(err);
         });
 
-      // if (this.accept !== true) {
-      //   this.$q.notify({
-      //     color: "red-5",
-      //     textColor: "white",
-      //     icon: "fas fa-exclamation-triangle",
-      //     message: "You need to accept the license and terms first"
-      //   });
-      // } else {
-      //   this.$q.notify({
-      //     color: "green-4",
-      //     textColor: "white",
-      //     icon: "fas fa-check-circle",
-      //     message: "Submitted"
-      //   });
-      // }
     },
 
     onReset() {
@@ -119,6 +108,19 @@ export default {
       .catch(function(err) {
         console.log(err);
       });
+
+      datauser_api
+        .getEmployeeById(window, self.$ls.get("userNow"))
+        .then(function(datas) {
+          return datas;
+        })
+        .then(function(res) {
+          self.dataUser = res;
+          console.log("data user = ", self.dataUser)
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
   }
 };
 </script>

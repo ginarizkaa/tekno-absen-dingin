@@ -49,9 +49,9 @@ export default {
         })
     },
 
-    getDataCutiEmployee(window, idEmployee){
+    getDataCutiBySpv(window, idSpv){
         return getApiNoAuth()
-        .get('DataCutis/getDataCutiEmployee?idEmployee='+idEmployee)
+        .get('DataCutis/getDataCutiBySpv?idSpv='+idSpv)
         .then(function (response){
             console.log(response)
             return response.data
