@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-center">
     <div class="q-pa-md" style="max-width: 400px;width:100%;text-align:center;">
-      <h3>Izin Cuti</h3>
+      <strong style="font-size:30px;font-family: cursive;" >Izin Cuti</strong>
+      <br>
+      
 
       <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
 
@@ -10,7 +12,7 @@
         </q-select> -->
 
         <!-- <q-select filled v-for="tc in tabelCutiList" :key="tc.id" v-bind:value="tc.id" :options="tc.jenisCuti" v-model="jenisCuti"  label="Jenis Cuti" /> -->
-        <q-select filled type="list" :options="tabelCutiList" v-model="jenisCuti"  label="Jenis Cuti" />
+        <q-select filled type="list" :options="tabelCutiList" v-model="jenisCuti"  label="Jenis Cuti" style="margin-top:20px"/>
 
         <q-input v-model="dateAwal" filled type="date" hint="Awal Cuti" />
 

@@ -1,26 +1,24 @@
 <template>
   <div class="flex flex-center">
     <div class="q-pa-md" style="max-width: 400px;width:100%;text-align:center;">
-      <img src="../assets/tekno.png" alt="Logo Tekno" height="80" width="300" margin="20px" />
+      <img src="../assets/tekno.png" alt="Logo Tekno" height="80" width="300" style="margin-bottom:20px"/>
 
       <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
         <q-input
           filled
           v-model="username"
           label="Username *"
-          hint="Your Username"
           lazy-rules
-          :rules="[ val => val && val.length > 0 || 'Please type something']"
+          :rules="[ val => val && val.length > 0 || 'Tolong isi username anda']"
         />
 
         <q-input
           filled
           v-model="password"
           label="Password *"
-          hint="Your password"
           type="password"
           lazy-rules
-          :rules="[ val => val && val.length > 0 || 'Please type something']"
+          :rules="[ val => val && val.length > 0 || 'Tolong isi password anda']"
         />
 
         <div>
@@ -53,7 +51,8 @@ export default {
     return {
       username: "",
       password: "",
-      userNow:""
+      userNow:"",
+      roles:""
     };
   },
 
@@ -72,13 +71,8 @@ export default {
               message: "Username atau Password salah"
             });
           } else {
-            self.$q.notify({
-              color: "green-4",
-              textColor: "white",
-              icon: "fas fa-check-circle",
-              message: "Kamu telah login"
-            });
             self.$ls.set("userNow", result.id);
+            self.$ls.set("roles", result.roles);
             // console.log("id nya dia = ", self.$ls.get("userNow"))
             self.$router.push("mainmenu");
           }

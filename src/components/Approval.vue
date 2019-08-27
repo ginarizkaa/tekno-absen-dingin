@@ -1,9 +1,10 @@
 <template>
-  <div style="text-align:center;">
-    <h3>Approval Absen</h3>
-  <div class="flex flex-center">
-    <div class="container mt-4" >
-    <table class="table table-bordered mt-4">
+  <div class="Test" style="text-align:center;width:100%">
+    <strong style="font-size:30px;font-family: cursive;" >Approval Absen</strong>
+      <br>
+  <div class="flex flex-center" style="width:100%">
+    <div class="container mt-4" style="width:100%">
+    <table class="table table-bordered mt-4" style="width:100%">
       <thead class="thead-light">
         <tr>
           <th width="5%">No</th>

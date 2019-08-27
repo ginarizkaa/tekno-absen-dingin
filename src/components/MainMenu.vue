@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <div v-if="dataUser.length!==0">
+      <div v-else-if="dataUser.length!==0">
         <div class="column" style="">
           <div class="col">
             <q-btn color="secondary" style="width:100%;margin-top:8px" to="/absen">
