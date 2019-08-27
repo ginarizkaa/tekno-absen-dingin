@@ -8,12 +8,12 @@
       <thead class="thead-light">
         <tr>
           <th width="5%">No</th>
-          <th width="25%">Nama</th>
+          <th width="15%">Nama</th>
           <th width="10%">Keterangan</th>
-          <th width="25%">Status</th>
+          <th width="20%">Status</th>
           <th width="10%">Waktu</th>
           <th width="10%">Lokasi</th>
-          <th width="10%">Action</th>
+          <th width="15%">Action</th>
         </tr>
       </thead>
       <tbody style="text-align:center;">
@@ -68,13 +68,13 @@
         <thead class="thead-light">
           <tr>
             <th width="5%">No</th>
-            <th width="20%">Nama</th>
+            <th width="15%">Nama</th>
             <th width="10%">Jenis Cuti</th>
-            <th width="10%">Awal Cuti</th>
-            <th width="10%">Akhir Cuti</th>
-            <th width="25%">Ket</th>
-            <th width="10%">Status</th>
-            <th width="10%">Action</th>
+            <th width="15%">Awal Cuti</th>
+            <th width="15%">Akhir Cuti</th>
+            <th width="10%">Ket</th>
+            <th width="15%">Status</th>
+            <th width="15%">Action</th>
           </tr>
         </thead>
         <tbody style="text-align:center;">
@@ -152,7 +152,7 @@
             </span>
           </td>
           <td>
-            <span v-if="editIndex !== index">{{ item.idSvp }}</span>
+            <span v-if="editIndex !== index">{{ item.idSpv }}</span>
             <span v-if="editIndex === index">
               <input class="form-control form-control-sm" v-model.number="item.idSvp">
             </span>
@@ -185,10 +185,14 @@
 
 <script>
 import absensi_api from '../api/absensi/index'
+import datacuti_api from '../api/datacuti/index'
+import datauser_api from '../api/datauser/index'
 
 export default {
   data () {
     return {
+      dataCuti:[],
+      dataUser:[],
       dataAbsensi:[],
       editIndex: null,
       originalData: null,
@@ -343,13 +347,39 @@ export default {
     let self = this;
 
     absensi_api
-      .getTodayBySpv(window, self.$ls.get("userNow"))
+      .getDetailAbsen(window)
       .then(function(datas) {
         return datas;
       })
       .then(function(res) {
         self.dataAbsensi = res;
-        console.log("datanya = ", self.dataAbsensi)
+        console.log("data absensi = ", self.dataAbsensi)
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+
+    datacuti_api
+      .getDetailCuti(window)
+      .then(function(datas) {
+        return datas;
+      })
+      .then(function(res) {
+        self.dataCuti = res;
+        console.log("data cuti = ", self.dataCuti)
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+
+    datauser_api
+      .getDetailUser(window)
+      .then(function(datas) {
+        return datas;
+      })
+      .then(function(res) {
+        self.items = res;
+        console.log("data user = ", self.items)
       })
       .catch(function(err) {
         console.log(err);

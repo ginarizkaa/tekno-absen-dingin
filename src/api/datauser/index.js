@@ -26,4 +26,15 @@ export default {
             console.log(err)
         })
     },
+
+    getDetailUser(window){
+        return getApiNoAuth()
+        .get('DataUsers?filter=%7B%22include%22%3A%22DataSpv%22%7D')
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    }
 }

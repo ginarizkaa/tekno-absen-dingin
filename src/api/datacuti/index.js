@@ -29,7 +29,7 @@ export default {
     
     getDetailCuti(window){
         return getApiNoAuth()
-        .get('DataCutis?filter=%7B%22include%22%3A%5B%22DataEmployee%22%2C%22DataJenisCuti%22%5D%7D')
+        .get('DataCutis?filter=%7B%22include%22%3A%5B%22DataEmployee%22%2C%22DataJenisCuti%22%2C%22DataAsesor%22%5D%7D')
         .then(function (response){
             console.log(response)
             return response.data
