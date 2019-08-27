@@ -130,7 +130,7 @@
           <td>
             <span v-if="editIndex !== index">{{ item.id }}</span>
             <span v-if="editIndex === index">
-              <input class="form-control form-control-sm" v-model="item.id">
+              {{ item.id }}
             </span>
           </td>
           <td>
@@ -152,9 +152,9 @@
             </span>
           </td>
           <td>
-            <span v-if="editIndex !== index">{{ item.idSpv }}</span>
+            <span v-if="editIndex !== index">{{ item.DataSpv.nama }}</span>
             <span v-if="editIndex === index">
-              <input class="form-control form-control-sm" v-model.number="item.idSvp">
+              <input class="form-control form-control-sm" v-model.number="item.idSpv">
             </span>
           </td>
           <td>
@@ -205,25 +205,51 @@ export default {
   methods:{
     add() {
       this.originalData = null
-      this.items.push({ id: this.items.length + 1 ,nama: '', username: '', password: '', idSvp: ''})
+      this.items.push({ nama: '', username: '', password: '', idSpv: ''})
       this.editIndex = this.items.length - 1
       this.tambahkan = true
     },
     deleteProduct (id) {
         console.log(id)
-        this.$store.dispatch('removeProduct', id)
+        datauser_api
+          .deleteDataUser(window, id)
+          .then(function(result){
+            console.log("berhasil")
+            return result;
+          })
+          .catch(function(err){
+            console.log(err);
+          }); 
         window.location.reload();
     },
 
     addProduct (item) {
         console.log('model', item)
-        this.$store.dispatch('addProduct', item)
+
+        datauser_api
+          .postDataUser(window, item)
+          .then(function(result){
+            console.log("berhasil")
+            return result;
+          })
+          .catch(function(err){
+            console.log(err);
+          }); 
+
         window.location.reload();
     },
 
     updateProduct (item) {
         console.log('model', item)
-        this.$store.dispatch('updateProduct', item)
+        datauser_api
+          .putDataUser(window, item)
+          .then(function(result){
+            console.log("berhasil")
+            return result;
+          })
+          .catch(function(err){
+            console.log(err);
+          }); 
         window.location.reload();
     },
 

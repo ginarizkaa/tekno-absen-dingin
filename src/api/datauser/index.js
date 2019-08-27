@@ -36,5 +36,38 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
-    }
+    },
+
+    postDataUser(window, param){
+        return getApiNoAuth()
+        .post('DataUsers', param)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
+
+    deleteDataUser(window, idEmployee){
+        return getApiNoAuth()
+        .delete('DataUsers/'+idEmployee)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
+
+    putDataUser(window, param){
+        return getApiNoAuth()
+        .put('DataUsers', param)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    },
 }
