@@ -43,13 +43,13 @@
           <td>
             <div v-if="da.status === 'Waiting'">
               <q-btn color="blue" align="center" icon="check" @click="accept(da)" />
-              <q-btn color="red" icon="cancel" @click="reject(da)" />
-              <q-btn color="red" icon="delete" @click="reject(da.id)" />
+              <q-btn color="warning" icon="cancel" @click="reject(da)" />
+              <q-btn color="red" icon="delete" @click="deleteAbsen(da.id)" />
             </div>
             <div v-else-if="da.status === 'Rejected'">
               <q-btn color="blue" align="center" icon="check" @click="accept(da)" />
-              <q-btn color="red" icon="cancel" @click="reject(da)" />
-              <q-btn color="red" icon="delete" @click="reject(da.id)" />
+              <q-btn color="warning" icon="cancel" @click="reject(da)" />
+              <q-btn color="red" icon="delete" @click="deleteAbsen(da.id)" />
             </div>
             <div v-else>
               <p>no action needed</p>
@@ -152,9 +152,12 @@
             </span>
           </td>
           <td>
-            <span v-if="editIndex !== index">{{ item.DataSpv.nama }}</span>
+            <span v-if="editIndex !== index && typeof(item.DataSpv) != 'undefined'">{{ item.DataSpv.nama }}</span>
             <span v-if="editIndex === index">
-              <input class="form-control form-control-sm" v-model.number="item.idSpv">
+              <select v-model.number="item.idSpv">
+                <option v-for="option in items" v-bind:value="option.id" :key="option.id">{{ option.nama }}</option>
+              </select>
+              <q-select filled type="list" :options="options" v-model="jenisCuti"  label="Nama Spv"/>
             </span>
           </td>
           <td>
@@ -194,21 +197,40 @@ export default {
       dataCuti:[],
       dataUser:[],
       dataAbsensi:[],
+      dataSpv:[],
       editIndex: null,
       originalData: null,
       items: [],
       tambahkan: false,
+      options: [
+        'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+      ]
     }
     
   },
   
   methods:{
+    deleteAbsen(id){
+      console.log("id yang mau di delete = ",id)
+      absensi_api
+        .deleteDataAbsen(window, id)
+        .then(function(result){
+          console.log("berhasil")
+          return result;
+        })
+        .catch(function(err){
+          console.log(err);
+        }); 
+      
+    },
+
     add() {
       this.originalData = null
       this.items.push({ nama: '', username: '', password: '', idSpv: ''})
       this.editIndex = this.items.length - 1
       this.tambahkan = true
     },
+
     deleteProduct (id) {
         console.log(id)
         datauser_api
@@ -251,15 +273,6 @@ export default {
             console.log(err);
           }); 
         window.location.reload();
-    },
-
-    delete() {
-      let self = this;
-      produk.deleteProduk(window, self.param).then(function(res){
-          return res
-      }).catch(function(err){
-        console.log(err)
-      });
     },
 
     edit(item, index) {
@@ -405,6 +418,11 @@ export default {
       })
       .then(function(res) {
         self.items = res;
+        // for(let i=0; i<res.length;i++){
+        //   if(typeof(res[i].DataSpv) != 'undefined'){
+        //     self.dataSpv = res[i].DataSpv 
+        //   }
+        // }
         console.log("data user = ", self.items)
       })
       .catch(function(err) {

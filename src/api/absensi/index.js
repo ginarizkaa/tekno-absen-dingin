@@ -81,5 +81,16 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
+    },
+
+    deleteDataAbsen(window, idEmployee){
+        return getApiNoAuth()
+        .delete('DataAbsensis/'+idEmployee)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
     }
 }
