@@ -26,7 +26,7 @@ export default {
             console.log(err)
         })
     },
-    
+
     getDetailCuti(window){
         return getApiNoAuth()
         .get('DataCutis?filter=%7B%22include%22%3A%5B%22DataEmployee%22%2C%22DataJenisCuti%22%2C%22DataAsesor%22%5D%7D')
@@ -59,4 +59,15 @@ export default {
             console.log(err)
         })
     },
+
+    getDataCutiByEmployee(window, idEmployee){
+        return getApiNoAuth()
+        .get('DataCutis?filter=%7B%22where%22%3A%7B%22idEmployee%22%3A%22'+idEmployee+'%22%7D%7D')
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
+    }
 }

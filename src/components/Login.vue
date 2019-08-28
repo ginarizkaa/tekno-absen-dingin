@@ -72,8 +72,7 @@ export default {
             });
           } else {
             self.$ls.set("userNow", result.id);
-            self.$ls.set("roles", result.roles);
-            // console.log("id nya dia = ", self.$ls.get("userNow"))
+            console.log("user skrg = ",self.$ls.get("userNow"))
             self.$router.push("mainmenu");
           }
           return result;

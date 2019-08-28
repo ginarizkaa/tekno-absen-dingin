@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-center">
+    
     <div class="q-pa-md q-gutter-sm" style="text-align:center;width:100%">
       <div v-if="dataUser.length===0">
         <div class="column">
@@ -22,7 +23,7 @@
                   <img src="../assets/cuti.png" height="100" width="100" style="margin:8px">
                 </div>
                 <div class="col">
-                  IZIN CUTI
+                  IZIN CUTI {{userskrg}}
                 </div>
               </div>
             </q-btn>
@@ -93,6 +94,12 @@ export default {
       dataUser:[]
     }
   },
+
+  computed:{
+    userskrg(){
+      this.$ls.get("userNow");
+    }
+  },
   
   beforeCreate(){
     let self = this;
@@ -105,6 +112,8 @@ export default {
       .then(function(res) {
         self.dataUser = res;
         console.log("datanya = ", self.dataUser)
+        //console.log("user skrg = ",  self.$ls.get("userNow"))
+
       })
       .catch(function(err) {
         console.log(err);

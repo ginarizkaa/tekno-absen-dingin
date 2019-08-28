@@ -1,6 +1,6 @@
 <template>
 <div style="text-align:center;">
-  <h6>Status Cuti</h6>
+  <h6>Status Cuti {{userskrg}}</h6>
   <div class="flex flex-center">
     <div class="container mt-4" >
       <div v-if="dataCuti.length === 0">
@@ -52,17 +52,23 @@ export default {
     }
   },
 
+  computed:{
+    userskrg(){
+      this.$ls.get("userNow");
+    }
+  },
+
   beforeCreate(){
     let self = this;
 
     datacuti_api
-      .getDataCutiEmployee(window, self.$ls.get("userNow"))
+      .getDataCutiByEmployee(window, self.$ls.get("userNow"))
       .then(function(datas) {
         return datas;
       })
       .then(function(res) {
         self.dataCuti = res;
-        console.log("datanya = ", self.dataCuti)
+        console.log("data cuti = ", self.dataCuti)
       })
       .catch(function(err) {
         console.log(err);
