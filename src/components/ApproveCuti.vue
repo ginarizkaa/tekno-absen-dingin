@@ -1,40 +1,47 @@
 <template>
-  <div style="text-align:center;">
-    <strong style="font-size:30px;font-family: cursive;">Approval Cuti</strong>
+  <div class="q-pa-md">
+    <center>
+      <strong style="font-size:30px;">Database Cuti</strong>
+    </center>
     <br />
-    <div class="flex flex-center" style="width:100%">
-      <div class="container mt-4" style="width:100%">
-        <table class="table table-bordered mt-4" style="width:100%">
-          <thead class="thead-light">
-            <tr>
-              <th width="5%">No</th>
-              <th width="20%">Nama</th>
-              <th width="10%">Jenis Cuti</th>
-              <th width="10%">Awal Cuti</th>
-              <th width="10%">Akhir Cuti</th>
-              <th width="25%">Ket</th>
-              <th width="10%">Status</th>
-              <th width="10%">Action</th>
-            </tr>
-          </thead>
-          <tbody style="text-align:center;">
-            <tr v-for="(dc, index) in dataCuti" :key="index">
-              <td>{{ index + 1 }}</td>
-              <td>{{ dc.DataEmployee.nama}}</td>
-              <td>{{ dc.DataJenisCuti.JenisCuti }}</td>
-              <td>{{ dc.dateAwal | formatDate }}</td>
-              <td>{{ dc.dateAkhir | formatDate }}</td>
-              <td>{{ dc.keterangan }}</td>
-              <td>{{ dc.status }}</td>
-              <td>
-                <q-btn color="blue" icon="check" @click="accept(dc)" />
-                <q-btn color="red" icon="cancel" @click="updateProduct(item)" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <q-markup-table :separator="separator" flat bordered>
+      <thead>
+        <tr>
+          <th class="text-center">No</th>
+          <th class="text-center">Nama</th>
+          <th class="text-center">Jenis Cuti</th>
+          <th class="text-center">Awal Cuti</th>
+          <th class="text-center">Akhir Cuti</th>
+          <th class="text-center">Ket</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(dc, index) in dataCuti" :key="index">
+          <td class="text-center">{{ index + 1 }}</td>
+          <td class="text-left">{{ dc.DataEmployee.nama }}</td>
+          <td class="text-center">{{ dc.DataJenisCuti.JenisCuti }}</td>
+          <td class="text-center">{{ dc.dateAwal | formatDate }}</td>
+          <td class="text-center">{{ dc.dateAkhir | formatDate }}</td>
+          <td class="text-center">{{ dc.keterangan }} </td>
+          <td class="text-center">
+            <div v-if="dc.status === 'Waiting'">{{ dc.status }}</div>
+            <div v-else>{{ dc.status }} by {{ dc.DataAsesor.nama }}</div>
+          </td>
+          <td class="text-center">
+            <div v-if="dc.status === 'Waiting' || dc.status === 'Rejected'">
+              <q-btn color="blue" align="center" icon="check" @click="konfirmasiCuti(dc, sAcc)" />
+              <q-btn color="warning" icon="cancel" @click="konfirmasiCuti(dc, sRej)" />
+              <q-btn color="red" icon="delete" @click="deleteCuti(dc.id)" />
+            </div>
+            <div v-else>
+              <p>no action needed</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </q-markup-table>
   </div>
 </template>
 
@@ -44,30 +51,35 @@ import datacuti_api from "../api/datacuti/index";
 export default {
   data() {
     return {
-      dataCuti: []
+      dataCuti: [],
+      sAcc: "Accepted",
+      sRej: "Rejected",
     };
   },
 
   methods: {
-    accept(data) {
+    konfirmasiCuti(data, stat) {
       let self = this;
+      let statuss;
+      if(stat==="Accepted"){
+        statuss = "Accepted"
+      }else if(stat==="Rejected"){
+        statuss = "Rejected"
+      }
       let idCuti = data.id;
-
       let param = {
         dateAwal: data.dateAwal,
         dateAkhir: data.dateAkhir,
         keterangan: data.keterangan,
-        status: "accepted",
+        status: statuss,
         idJenisCuti: data.idJenisCuti,
         idAsesor: self.$ls.get("userNow"),
         idEmployee: data.DataEmployee.id
       };
-      //console.log("id absen = ", idCuti, "paramnya = ", param);
-
       datacuti_api
         .putStatus(window, idCuti, param)
         .then(function(result) {
-          //console.log("berhasil")
+          window.location.reload(true);
           return result;
         })
         .catch(function(err) {
@@ -86,7 +98,19 @@ export default {
         .catch(function(err) {
           console.log(err);
         });
-    }
+    },
+
+    deleteCuti(id) {
+      datacuti_api
+        .deleteDataCuti(window, id)
+        .then(function(result) {
+          return result;
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    },
+    
   },
 
   beforeCreate() {

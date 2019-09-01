@@ -10,6 +10,7 @@ import StatusPagi from '@/components/StatusPagi.vue';
 import StatusPulang from '@/components/StatusPulang.vue';
 import Map from '@/components/Map.vue';
 import Admin from '@/components/Admin.vue';
+import ResetPassword from '@/components/ResetPassword.vue';
 
 const routes = [
     { path: '/', component: Login, name: 'home' },
@@ -25,6 +26,8 @@ const routes = [
     { path: '/map', component: Map, name: 'map' },
     { path: '/map/:lat,:long', component: Map, name: 'map2', props: true},
     { path: '/admin', component: Admin, name: 'admin' },
+    { path: '/resetpassword', component: ResetPassword, name: 'resetpassword' },
+
 
 ];
 

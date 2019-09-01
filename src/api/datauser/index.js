@@ -27,6 +27,7 @@ export default {
         })
     },
 
+    //{"include":"DataSpv"}
     getDetailUser(window){
         return getApiNoAuth()
         .get('DataUsers?filter=%7B%22include%22%3A%22DataSpv%22%7D')

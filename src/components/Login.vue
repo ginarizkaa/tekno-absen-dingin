@@ -50,9 +50,7 @@ export default {
   data() {
     return {
       username: "",
-      password: "",
-      userNow:"",
-      roles:""
+      password: ""
     };
   },
 
@@ -73,7 +71,8 @@ export default {
             //console.log("roles nya adalah = ", result.roles)
             if(result.roles==="Karyawan"){
               self.$ls.set("userNow", result.id);
-              console.log("user skrg karyawan = ",self.$ls.get("userNow"))
+              self.$ls.set("dataUserNow", JSON.stringify(result));
+              //var ok = JSON.parse(self.$ls.get("dataUserNow")).nama;
               self.$router.push("mainmenu");
             }if (result.roles==="Admin") {
               self.$ls.set("userNow", result.id);

@@ -12,6 +12,7 @@ export default {
   methods:{
     logout(){
       this.$ls.remove("userNow")
+      this.$ls.remove("dataUserNow")
       this.$router.push("/")
     }
   }

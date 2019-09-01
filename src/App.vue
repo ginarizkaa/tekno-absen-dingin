@@ -13,7 +13,7 @@
       <footery v-if="['home'].indexOf($route.name) > -1"/>
       <footerx v-if="['mainmenu'].indexOf($route.name) > -1"/>
       <footerz v-if="['admin','map2','map','absen', 'approval','izincuti','approvecuti'].indexOf($route.name) > -1"/>
-      <footerw v-if="['status','statuspagi','statuspulang','statuscuti',].indexOf($route.name) > -1"/>
+      <footerw v-if="['status','statuspagi','statuspulang','statuscuti','resetpassword'].indexOf($route.name) > -1"/>
     </q-page-container>
 
   </q-layout>

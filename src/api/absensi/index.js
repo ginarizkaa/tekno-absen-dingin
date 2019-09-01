@@ -27,7 +27,7 @@ export default {
         })
     },
 
-    // get detail include employee and asesor
+    //{"include":["DataEmployee", "DataAsesor"]}
     getDetailAbsen(window){
         return getApiNoAuth()
         .get('DataAbsensis?filter=%7B%22include%22%3A%20%5B%22DataEmployee%22%2C%20%22DataAsesor%22%5D%7D')

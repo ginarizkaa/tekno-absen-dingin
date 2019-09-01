@@ -62,7 +62,7 @@ export default {
         dateAwal:self.dateAwal,
         dateAkhir:self.dateAkhir,
         keterangan:self.text,
-        status:"waiting",
+        status:"Waiting",
         idAsesor: self.dataUser.idSpv
       }
 
