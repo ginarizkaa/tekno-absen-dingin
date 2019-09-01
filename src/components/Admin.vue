@@ -32,14 +32,9 @@
             >Lihat</router-link>
           </td>
           <td class="text-center">
-            <div v-if="da.status === 'Waiting'">
-              <q-btn color="blue" align="center" icon="check" @click="accept(da)" />
-              <q-btn color="warning" icon="cancel" @click="reject(da)" />
-              <q-btn color="red" icon="delete" @click="deleteAbsen(da.id)" />
-            </div>
-            <div v-else-if="da.status === 'Rejected'">
-              <q-btn color="blue" align="center" icon="check" @click="accept(da)" />
-              <q-btn color="warning" icon="cancel" @click="reject(da)" />
+            <div v-if="da.status === 'Waiting' || da.status === 'Rejected'">
+              <q-btn color="blue" align="center" icon="check" @click="konfirmasiAbsen(da, sAcc)" />
+              <q-btn color="warning" icon="cancel" @click="konfirmasiAbsen(da, sRej)" />
               <q-btn color="red" icon="delete" @click="deleteAbsen(da.id)" />
             </div>
             <div v-else>
@@ -76,11 +71,19 @@
           <td class="text-center">{{ dc.dateAwal | formatDate }}</td>
           <td class="text-center">{{ dc.dateAkhir | formatDate }}</td>
           <td class="text-center">{{ dc.keterangan }} </td>
-          <td class="text-center">{{ dc.status }}</td>
           <td class="text-center">
-            <q-btn color="blue" icon="check" @click="accept(dc)" />
-            <q-btn color="warning" icon="cancel" @click="updateProduct(item)" />
-            <q-btn color="red" icon="delete" @click="reject(da.id)" />
+            <div v-if="dc.status === 'Waiting'">{{ dc.status }}</div>
+            <div v-else>{{ dc.status }} by {{ dc.DataAsesor.nama }}</div>
+          </td>
+          <td class="text-center">
+            <div v-if="dc.status === 'Waiting' || dc.status === 'Rejected'">
+              <q-btn color="blue" align="center" icon="check" @click="konfirmasiCuti(dc, sAcc)" />
+              <q-btn color="warning" icon="cancel" @click="konfirmasiCuti(dc, sRej)" />
+              <q-btn color="red" icon="delete" @click="deleteCuti(dc.id)" />
+            </div>
+            <div v-else>
+              <p>no action needed</p>
+            </div>
           </td>
         </tr>
       </tbody>
@@ -100,6 +103,7 @@
           <th class="text-center">Username</th>
           <th class="text-center">Password</th>
           <th class="text-center">idSpv</th>
+          <th class="text-center">Roles</th>
           <th class="text-center">Aksi</th>
         </tr>
       </thead>
@@ -113,16 +117,16 @@
             </span>
             </td>
             <td class="text-center">
-            <span v-if="editIndex !== index">{{ item.username }}</span>
-            <span v-if="editIndex === index">
-                <input class="form-control form-control-sm" v-model="item.username" />
-            </span>
+              <span v-if="editIndex !== index">{{ item.username }}</span>
+              <span v-if="editIndex === index">
+                  <input class="form-control form-control-sm" v-model="item.username" />
+              </span>
             </td>
             <td class="text-center">
-            <span v-if="editIndex !== index">{{ item.password }}</span>
-            <span v-if="editIndex === index">
-                <input class="form-control form-control-sm" v-model="item.password" />
-            </span>
+              <span v-if="editIndex !== index">{{ item.password }}</span>
+              <span v-if="editIndex === index">
+                  <input class="form-control form-control-sm" v-model="item.password" />
+              </span>
             </td>
             <td class="text-center">
             <span
@@ -137,6 +141,19 @@
                 >{{ option.nama }}</option>
                 </select>
             </span>
+            </td>
+            <td class="text-center">
+              <span v-if="editIndex !== index">{{ item.roles }}</span>
+              <span v-if="editIndex === index">
+                  <select v-model="item.roles">
+                    <option
+                      v-for="option in daftarRoles"
+                      v-bind:value="option"
+                      :key="option"
+                  >{{ option }}
+                    </option>
+                  </select>
+              </span>
             </td>
             <td class="text-center">
             <span v-if="editIndex !== index && tambahkan === false">
@@ -156,9 +173,7 @@
       </tbody>
     </q-markup-table>
     <div class="col-3 offset-9 text-right my-3">
-        <q-btn color="blue" icon="add"  @click="add"/>
-
-        
+        <q-btn color="blue" icon="add"  @click="add"/>        
     </div>
 
   </div>
@@ -177,6 +192,9 @@ var mongoose = require('mongoose');
 export default {
   data() {
     return {
+      sAcc: "Accepted",
+      sRej: "Rejected",
+      daftarRoles: ["Karyawan","Admin"],
       dataAbsensi: [],
       dataUser: [],
       dataCuti: [],
@@ -188,12 +206,78 @@ export default {
     };
   },
   methods: {
+    konfirmasiAbsen(data, stat) {
+      let statuss;
+      if(stat==="Accepted"){
+        statuss = "Accepted"
+      }else if(stat==="Rejected"){
+        statuss = "Rejected"
+      }
+      let self = this;
+      let idAbsen = data.id;
+      let param = {
+        date: data.date,
+        keterangan: data.keterangan,
+        status: statuss,
+        idAsesor: self.$ls.get("userNow"),
+        location: data.location,
+        idEmployee: data.DataEmployee.id
+      };
+      absensi_api
+        .putStatus(window, idAbsen, param)
+        .then(function(result) {
+          window.location.reload(true);
+          return result;
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    },
+
     deleteAbsen(id) {
-      console.log("id yang mau di delete = ", id);
       absensi_api
         .deleteDataAbsen(window, id)
         .then(function(result) {
-          console.log("berhasil");
+          return result;
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    },
+
+    konfirmasiCuti(data, stat) {
+      let self = this;
+      let statuss;
+      if(stat==="Accepted"){
+        statuss = "Accepted"
+      }else if(stat==="Rejected"){
+        statuss = "Rejected"
+      }
+      let idCuti = data.id;
+      let param = {
+        dateAwal: data.dateAwal,
+        dateAkhir: data.dateAkhir,
+        keterangan: data.keterangan,
+        status: statuss,
+        idJenisCuti: data.idJenisCuti,
+        idAsesor: self.$ls.get("userNow"),
+        idEmployee: data.DataEmployee.id
+      };
+      datacuti_api
+        .putStatus(window, idCuti, param)
+        .then(function(result) {
+          window.location.reload(true);
+          return result;
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    },
+
+    deleteCuti(id) {
+      datacuti_api
+        .deleteDataCuti(window, id)
+        .then(function(result) {
           return result;
         })
         .catch(function(err) {
@@ -209,11 +293,11 @@ export default {
     },
 
     deleteProduct(id) {
-      console.log(id);
+      //console.log(id);
       datauser_api
         .deleteDataUser(window, id)
         .then(function(result) {
-          console.log("berhasil");
+          //console.log("berhasil");
           return result;
         })
         .catch(function(err) {
@@ -223,12 +307,12 @@ export default {
     },
 
     addProduct(item) {
-      console.log("model", item);
+      //console.log("model", item);
 
       datauser_api
         .postDataUser(window, item)
         .then(function(result) {
-          console.log("berhasil");
+          //console.log("berhasil");
           return result;
         })
         .catch(function(err) {
@@ -244,13 +328,14 @@ export default {
             nama: item.nama,
             username: item.username,
             password: item.password,
+            roles: item.roles,
             idSpv: mongoose.Types.ObjectId(item.idSpv)
         }
-      console.log("update = ", param);
+      //console.log("update = ", param);
       datauser_api
         .putDataUser(window, param)
         .then(function(result) {
-          console.log("berhasil");
+          //console.log("berhasil");
           return result;
         })
         .catch(function(err) {
@@ -285,58 +370,7 @@ export default {
       this.originalData = null;
       this.editIndex = null;
     },
-    accept(data) {
-      let self = this;
-      let idAbsen = data.id;
-
-      let param = {
-        date: data.date,
-        keterangan: data.keterangan,
-        status: "Approved",
-        idAsesor: self.$ls.get("userNow"),
-        location: data.location,
-        idEmployee: data.DataEmployee.id
-      };
-      console.log("id absen = ", idAbsen, "paramnya = ", param);
-
-      absensi_api
-        .putStatus(window, idAbsen, param)
-        .then(function(result) {
-          console.log("berhasil");
-          window.location.reload(true);
-          return result;
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
-
-    },
-
-    reject(da) {
-      let self = this;
-      let idAbsen = data.id;
-
-      let param = {
-        date: data.date,
-        keterangan: data.keterangan,
-        status: "Rejected",
-        idAsesor: self.$ls.get("userNow"),
-        location: data.location,
-        idEmployee: data.DataEmployee.id
-      };
-      console.log("id absen = ", idAbsen, "paramnya = ", param);
-
-      absensi_api
-        .putStatus(window, idAbsen, param)
-        .then(function(result) {
-          console.log("berhasil");
-          window.location.reload(true);
-          return result;
-        })
-        .catch(function(err) {
-          console.log(err);
-        });
-    }
+    
   },
 
   beforeCreate() {
@@ -349,7 +383,7 @@ export default {
       })
       .then(function(res) {
         self.dataAbsensi = res;
-        console.log("data absensi = ", self.dataAbsensi);
+        //console.log("data absensi = ", self.dataAbsensi);
       })
       .catch(function(err) {
         console.log(err);
@@ -362,7 +396,7 @@ export default {
       })
       .then(function(res) {
         self.dataCuti = res;
-        console.log("data cuti = ", self.dataCuti);
+        //console.log("data cuti = ", self.dataCuti);
       })
       .catch(function(err) {
         console.log(err);
@@ -380,7 +414,7 @@ export default {
         //     self.dataSpv = res[i].DataSpv
         //   }
         // }
-        console.log("data user = ", self.items);
+        //console.log("data user = ", self.items);
       })
       .catch(function(err) {
         console.log(err);

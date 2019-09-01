@@ -67,13 +67,26 @@ export default {
             self.$q.notify({
               color: "red-5",
               textColor: "white",
-              icon: "fas fa-exclamation-triangle",
-              message: "Username atau Password salah"
+              message: "Wrong Username and Password!"
             });
           } else {
-            self.$ls.set("userNow", result.id);
-            console.log("user skrg = ",self.$ls.get("userNow"))
-            self.$router.push("mainmenu");
+            //console.log("roles nya adalah = ", result.roles)
+            if(result.roles==="Karyawan"){
+              self.$ls.set("userNow", result.id);
+              console.log("user skrg karyawan = ",self.$ls.get("userNow"))
+              self.$router.push("mainmenu");
+            }if (result.roles==="Admin") {
+              self.$ls.set("userNow", result.id);
+              //console.log("user skrg = ",self.$ls.get("userNow"))
+              self.$router.push("admin");
+            } else {
+              //doNothing
+            }
+            self.$q.notify({
+              color: "green",
+              textColor: "white",
+              message: "You're Logged In"
+            });
           }
           return result;
         })

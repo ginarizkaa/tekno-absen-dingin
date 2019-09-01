@@ -69,5 +69,16 @@ export default {
         }).catch(function(err){
             console.log(err)
         })
+    },
+
+    deleteDataCuti(window, idEmployee){
+        return getApiNoAuth()
+        .delete('DataCutis/'+idEmployee)
+        .then(function (response){
+            console.log(response)
+            return response.data
+        }).catch(function(err){
+            console.log(err)
+        })
     }
 }

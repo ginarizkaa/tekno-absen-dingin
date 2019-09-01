@@ -89,8 +89,7 @@ export default {
          absensi_api
           .postAbsen(window, param)
           .then(function(result) {
-            console.log("berhasil")
-            //this.datang=false;
+            //console.log("berhasil")
             self.$q.notify({
               color: "blue",
               textColor: "white",
@@ -121,7 +120,7 @@ export default {
           }
         }
 
-        console.log("oke = ",param)
+        //console.log("oke = ",param)
         absensi_api
           .postAbsen(window, param)
           .then(function(result) {
@@ -156,7 +155,7 @@ export default {
       })
       .then(function(res) {
         self.dataAbsensiToday = res;
-        console.log("datanya = ", self.dataAbsensiToday)
+        //console.log("datanya = ", self.dataAbsensiToday)
         for(let j=0; j<self.dataAbsensiToday.length; j++){
           if(self.dataAbsensiToday[j].idEmployee === self.$ls.get("userNow")){
             if(self.dataAbsensiToday[j].keterangan === "Datang"){
@@ -181,7 +180,7 @@ export default {
       })
       .then(function(res) {
         self.dataUser = res;
-        console.log("data user = ", self.dataUser)
+        //console.log("data user = ", self.dataUser)
       })
       .catch(function(err) {
         console.log(err);

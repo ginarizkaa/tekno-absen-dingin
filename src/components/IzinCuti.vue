@@ -66,7 +66,7 @@ export default {
         idAsesor: self.dataUser.idSpv
       }
 
-      console.log("datanya = ", param)
+      //console.log("datanya = ", param)
 
       datacuti_api
         .postDataCuti(window, param)
@@ -118,7 +118,7 @@ export default {
         })
         .then(function(res) {
           self.dataUser = res;
-          console.log("data user = ", self.dataUser)
+          //console.log("data user = ", self.dataUser)
         })
         .catch(function(err) {
           console.log(err);
