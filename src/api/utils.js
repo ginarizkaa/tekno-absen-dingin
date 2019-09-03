@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:3000/api/';
+const API_URL = 'http://192.168.4.49:3000/api/';
 const API_URL_MAP = 'https://nominatim.openstreetmap.org/';
 
 export function getApiNoAuth(){
